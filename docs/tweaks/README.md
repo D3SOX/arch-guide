@@ -18,7 +18,7 @@ vm.swappiness=10
 ### Install OOM killer
 An Out Of Memory (OOM) killer terminates applications when you would otherwise run out of memory.
 ::: warning
-⚠ This may lead to data loss if an application with unsaved data is killed.
+⚠️ This may lead to data loss if an application with unsaved data is killed.
 :::
 ```bash
 yay -S earlyoom
