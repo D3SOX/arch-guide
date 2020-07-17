@@ -1,4 +1,4 @@
-# arch-installation
+# arch-guide
 
 > My installation instructions and guide for Arch Linux
 

@@ -11,11 +11,6 @@ module.exports = {
   description: description,
 
   /**
-   * Ref: https://v1.vuepress.vuejs.org/config/#base
-   */
-  base: '/arch-installation/',
-
-  /**
    * Extra tags to be injected to the page HTML `<head>`
    *
    * ref：https://v1.vuepress.vuejs.org/config/#head
@@ -32,7 +27,7 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: 'https://github.com/D3SOX/arch-installation-vuepress',
+    repo: 'https://github.com/D3SOX/arch-guide-vuepress',
     editLinks: false,
     docsDir: '',
     editLinkText: '',

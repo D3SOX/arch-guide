@@ -1,12 +1,12 @@
 {
-  "name": "arch-installation",
+  "name": "arch-guide",
   "version": "0.0.1",
   "description": "My installation instructions and guide for Arch Linux",
   "main": "index.js",
   "authors": {
     "name": "D3SOX"
   },
-  "repository": "git@github.com:D3SOX/arch-installation-vuepress.git/arch-installation",
+  "repository": "https://github.com/D3SOX/arch-guide-vuepress",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
