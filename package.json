@@ -1,0 +1,19 @@
+{
+  "name": "arch-installation",
+  "version": "0.0.1",
+  "description": "My installation instructions and guide for Arch Linux",
+  "main": "index.js",
+  "authors": {
+    "name": "D3SOX"
+  },
+  "repository": "git@github.com:D3SOX/arch-installation-vuepress.git/arch-installation",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.5.2",
+    "vuepress": "^1.5.2"
+  }
+}
