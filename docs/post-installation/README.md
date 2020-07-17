@@ -137,7 +137,9 @@ Exec = /usr/bin/paccache -rk 2
 
 If you are using KDE Plasma, I do not recommend using the built-in installation methods, as in my experience they're very buggy.
 
-> These are the themes that I'm using on my KDE Plasma setup
+::: tip
+These are the themes that I'm using on my KDE Plasma setup
+:::
 
 ### General
 Icon Theme
