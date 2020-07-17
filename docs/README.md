@@ -15,7 +15,7 @@ footer: Made by D3SOX with ❤️
 ---
 
 <div align="center">
-    <img src="https://img.shields.io/github/last-commit/D3S0X/arch-guide.svg?style=for-the-badge&label=Last%20update" alt="Last Update" />
-    <img src="https://img.shields.io/github/stars/D3S0X/arch-guide?style=for-the-badge" alt="Stars">
-    <img src="https://img.shields.io/github/license/D3S0X/arch-guide?style=for-the-badge" alt="License">
+    <img src="https://img.shields.io/github/last-commit/D3SOX/arch-guide.svg?style=for-the-badge&label=Last%20update" alt="Last Update" />
+    <img src="https://img.shields.io/github/stars/D3SOX/arch-guide?style=for-the-badge" alt="Stars">
+    <img src="https://img.shields.io/github/license/D3SOX/arch-guide?style=for-the-badge" alt="License">
 </div>
