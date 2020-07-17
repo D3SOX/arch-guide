@@ -11,7 +11,7 @@
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
   },
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.2",
     "vuepress": "^1.5.2"
