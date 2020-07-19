@@ -48,7 +48,7 @@ systemctl enable bluetooth
 ```
 
 ## Input Driver
-These are some packages needed for certain input devices to properly work. It does no harm to install then, even if you wouldn't need them
+These are some packages needed for certain input devices to function properly. It does no harm to install them, even if you wouldn't need them
 ```bash
 pacman -S xf86-input-synaptics xf86-input-libinput xf86-input-evdev
 ```
