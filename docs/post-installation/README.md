@@ -71,18 +71,6 @@ echo "export QT_QPA_PLATFORMTHEME=gtk2" >> ~/.profile
 yay -S linux-apfs-dkms-git
 ```
 
-## Graphics card configuration tool
-
-### AMD
-```bash
-yay -S radeon-profile-git radeon-profile-daemon-git
-systemctl enable --now radeon-profile-daemon
-```
-### NVIDIA
-```bash
-yay -S nvidia-settings
-```
-
 ## Fonts
 
 ### General Fonts

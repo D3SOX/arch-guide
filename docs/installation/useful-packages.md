@@ -97,11 +97,6 @@ Only install this package if you are using an Intel GPU
 ```bash
 pacman -S vulkan-intel
 ```
-### Gaming packages
-These packages are useful for gaming
-```bash
-pacman -S vkd3d lib32-vkd3d faudio lib32-faudio
-```
 
 ## Networking
 🖧 Those are essential networking tools

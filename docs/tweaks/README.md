@@ -244,7 +244,7 @@ gsettings set org.nemo.desktop show-desktop-icons true
 
 ## Backup / Restore
 
-## System
+### System
 
 I recommend Timeshift to backup your system. Install it with
 ```
@@ -253,7 +253,7 @@ systemctl enable --now cronie
 ```
 For more information please refer to <https://github.com/teejee2008/timeshift>
 
-## Personal files
+### Personal files
 
 I recommend Déjà Dup to backup your personal files. Install it with
 ```bash
@@ -261,16 +261,16 @@ yay -S deja-dup
 ```
 You may want to exclude certain folders (like Nextcloud or other cloud services, Games, .cache, .config and .local/share if you don't want to backup your program config files)
 
-## Packages / Services List
+### Packages / Services List
 
 See <https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_installed_packages>
 
-### Backup
+#### Backup
 ```bash
 yay -Qqe > pkglist.txt
 systemctl list-unit-files --state=enabled > enabled-services.txt
 ```
-### Restore
+#### Restore
 ```bash
 yay -S --needed - < pkglist.txt
 # Re-enable services with systemctl enable

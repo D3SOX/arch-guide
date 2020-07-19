@@ -45,6 +45,10 @@ module.exports = {
         text: 'Fixes & Tweaks',
         link: '/tweaks/'
       },
+      {
+        text: 'Gaming',
+        link: '/gaming/'
+      },
     ],
     sidebar: {
       '/installation/': [
