@@ -75,6 +75,7 @@ module.exports = {
             'mount-filesystems',
             'base-installation',
             'install-bootloader',
+            'configure-system',
             'setup-users',
             'install-desktop',
             'useful-packages',
