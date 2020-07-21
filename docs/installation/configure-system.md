@@ -3,7 +3,7 @@
 ## The nano text editor
 Nano is the text editor we will use in this tutorial. Basic Usage:
 - Move with arrow keys
-- `CTRL + W` and then `ENTER` to save
+- `CTRL + O` and then `ENTER` to save
 - `CTRL + X` to exit
 
 ## Setup hostname
