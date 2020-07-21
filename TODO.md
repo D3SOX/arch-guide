@@ -10,3 +10,7 @@ Doesn't look good because text is no longer centered
   staticIcon: true,
 }]
 ```
+
+# Other TODOs
+- Add instructions to Dualboot with Windows 10
+- Add a section for Full Disk Encryption
