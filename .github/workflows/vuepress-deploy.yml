@@ -10,11 +10,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@1.0.1
+    - name: Build and Deploy
+      uses: rreichel3/vuepress-github-actions-deploy@v3.1
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: D3SOX/arch-guide
-        TARGET_BRANCH: master
-        BUILD_SCRIPT: yarn && yarn build
         BUILD_DIR: docs/.vuepress/dist/
+        BUILD_SCRIPT: yarn && yarn build
+        PAGES_CNAME: arch.d3sox.icu
