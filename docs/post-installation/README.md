@@ -55,14 +55,29 @@ yay -S firefox-kde-opensuse-rpm
 📦 I recommend only to use ```yay``` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
 - Simple GTK: ```yay -S gnome-packagekit```
 - Simple Qt: ```yay -S apper```
-- Complex GTK: ```yay -S pamac-aur```
+- Complex GTK: ```yay -S pamac-aur``` (Most beginner friendly)
 - Complex Qt: ```yay -S octopi```
 
-## If you use a GTK desktop and want Qt apps to use your GTK Theme
-🧮 This may not look good with every GTK Theme
+## Qt theme on GTK Desktop
+
+If you use a GTK desktop and want Qt apps to use your GTK Theme you have 2 choices
+
+You need to install the Qt5 Style plugins for both
 ```bash
 yay -S qt5-styleplugins
+```
+
+### Convert GTK2 theme
+
+🧮 This may not look good with every GTK Theme
+```bash
 echo "export QT_QPA_PLATFORMTHEME=gtk2" >> ~/.profile
+```
+### Qt5
+You can use Qt5Ct instead
+```bash
+yay -S qt5ct
+echo "export QT_QPA_PLATFORMTHEME=qt5ct" >> ~/.profile
 ```
 
 ## If you want to read APFS Partitions

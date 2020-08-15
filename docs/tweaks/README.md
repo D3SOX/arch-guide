@@ -51,7 +51,7 @@ If the default font includes some emoji characters, they will be used over the c
 ⚠️ Be aware that there is a bug when you do not have the [Windows Fonts](/post-installation/#windows-fonts) installed. See <https://bugs.archlinux.org/task/66080>
 :::
 
-```
+```bash
 sudo nano /etc/fonts/conf.d/75-joypixels.conf
 ```
 ::: details Click me to view the code

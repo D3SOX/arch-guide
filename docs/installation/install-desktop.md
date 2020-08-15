@@ -10,7 +10,7 @@ pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xkill
 
 🗔 You need to select a desktop environment
 
-- For beginners coming from Windows I recommend KDE Plasma.
+- For beginners coming from Windows I recommend KDE Plasma or Cinnmaon.
 - For a very resource friendy desktop I recommend Xfce or LXQt
 - **The instructions for KDE Plasma are tested by me because I use it. Others should work but you may need some extra packages for productive use (pull requests are welcome)**
 

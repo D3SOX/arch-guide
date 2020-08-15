@@ -90,7 +90,7 @@ pacman -S nvidia nvidia-lts nvidia-utils lib32-nvidia-utils
 ### AMD Utils
 Only install these packages if you are using an AMD GPU
 ```bash
-pacman -S vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau amdvlk lib32-amdvlk
+pacman -S libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau amdvlk lib32-amdvlk
 ```
 ### Intel Utils
 Only install this package if you are using an Intel GPU
