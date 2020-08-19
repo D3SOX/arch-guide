@@ -16,7 +16,7 @@ pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xkill
 
 ### KDE Plasma
 ```bash
-pacman -S plasma kdialog packagekit-qt5 kcalc icoutils libappimage konsole dolphin kdegraphics-thumbnailers ffmpegthumbs kdenetwork-filesharing gwenview ark kate okular kcron kdf filelight print-manager
+pacman -S plasma kdialog packagekit-qt5 kcalc icoutils libappimage konsole dolphin kdegraphics-thumbnailers svgpart ffmpegthumbs kdenetwork-filesharing gwenview ark kate okular kcron kdf filelight print-manager
 ```
 If you want to use KDE Connect (Pairing with Android phone)
 ```bash

@@ -40,7 +40,7 @@ module.exports = {
       defaultColorTheme: 'blue',
       disableThemeIgnore: true,
     },
-    repo: 'https://github.com/D3SOX/arch-guide-vuepress',
+    repo: 'https://github.com/D3SOX/arch-guide',
     editLinks: false,
     docsDir: '',
     editLinkText: '',
