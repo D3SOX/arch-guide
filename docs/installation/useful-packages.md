@@ -43,7 +43,7 @@ pacman -S hplip
 ## Bluetooth support
 🔵 Add some packages needed for proper bluetooth support
 ```bash
-pacman -S bluez bluez-utils
+pacman -S bluez bluez-utils pulseaudio-bluetooth
 systemctl enable bluetooth
 ```
 
