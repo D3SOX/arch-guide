@@ -15,7 +15,7 @@
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.4",
     "vuepress": "^1.5.4",
-    "vuepress-plugin-smooth-scroll": "^0.0.9",
+    "vuepress-plugin-smooth-scroll": "^0.0.10",
     "vuepress-theme-yuu": "^2.3.0"
   }
 }
