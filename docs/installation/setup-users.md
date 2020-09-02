@@ -9,7 +9,7 @@ passwd
 ## Add your user
 🧑 This will be your user you use to log in. For group reference see <https://wiki.archlinux.org/index.php/Users_and_groups#Group_list>
 ```bash
-useradd -m -G audio,video,users,wheel,sys,log,rfkill,lp,adm -s /bin/bash yourusername
+useradd -m -G audio,video,wheel,sys,log,rfkill,lp,adm -s /bin/bash yourusername
 passwd yourusername
 ```
 🎰 If you want to force your user to change password after first login:
