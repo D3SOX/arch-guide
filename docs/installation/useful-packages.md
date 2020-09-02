@@ -137,6 +137,13 @@ nano /etc/pulse/default.pa
 ```
 💥 Comment (add # in front of) `# load-module module-role-cork`
 
+## ADB
+If you want the Android Debug Bridge working with your user:
+```bash
+pacman -S android-tools android-udev
+usermod -aG adbusers yourusername
+```
+
 ## Other shells
 
 🐚 You may want to use another shell than bash
