@@ -1,6 +1,6 @@
 # Live Setup
 
-At this point, I assume you're already in the archiso.
+At this point, I assume you're already in the archiso. Make sure you are using the latest version which can be found on the [official download site](https://www.archlinux.org/download/)
 
 ## Set keyboard layout
 ⌨️ The default keymap is US. Available layouts can be listed with:
@@ -14,8 +14,6 @@ loadkeys yourkeymap
 
 ## If you use WiFi to connect to your router
 📶 Use this tool to connect to your network
-
-After July 2020:
 ```bash
 iwctl
 device list
@@ -24,11 +22,7 @@ station wlan0 scan
 station wlan0 get-networks
 # replace <SSID> with your network name from the previous command
 station wlan0 connect <SSID>
-```
-
-Before July 2020:
-```bash
-wifi-menu
+exit
 ```
 
 ## Check internet connection

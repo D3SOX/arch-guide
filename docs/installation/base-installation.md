@@ -3,8 +3,8 @@
 ## Rank the mirrors before for faster downloads
 📊 This will rank the mirrorlist. You may replace United States with your country
 ```bash
-pacman -Sy archlinux-keyring reflector
-reflector --country 'United States' --age 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+reflector -c 'United States' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
+pacman -Syy
 ```
 
 ## Start the installation
