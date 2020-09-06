@@ -5,7 +5,7 @@ sidebar: auto
 # Post-Installation
 
 ## Set X11 Keymap
-⌨️ It's recommended to set this to your keymap. Some Display Manager and Desktop Environments use this (replace `yourkeymap` with your keymap e.g. `de-latin1`)
+⌨️ It's recommended to set this to your keymap. Some Display Manager and Desktop Environments use this (replace `yourkeymap` with your keymap e.g. `de`)
 ```bash
 localectl set-x11-keymap yourkeymap
 ```
@@ -43,13 +43,6 @@ cd .. && rm -rf yay
 - `yay -Qi xyz` Show local package
 - `yay -Qq` List installed packages
 - `yay -Qqe` List explicitly installed packages
-
-## Firefox for KDE Plasma
-Chromium based browsers make use of kdialog for file dialogs. Firefox does not.
-OpenSUSE created a patched firefox which integrates better into the KDE Plasma Desktop.
-```bash
-yay -S firefox-kde-opensuse-rpm
-```
 
 ## If you want a graphical package manager
 📦 I recommend only to use ```yay``` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
