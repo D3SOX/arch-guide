@@ -111,6 +111,7 @@ yay -S nano-syntax-highlighting
 🗑️ This will clear the package cache to only keep 1 version after every action
 
 ```bash
+yay -S pacman-contrib
 sudo mkdir /etc/pacman.d/hooks
 sudo nano /etc/pacman.d/hooks/clean_package_cache.hook
 ```
