@@ -144,7 +144,7 @@ yay -S la-capitaine-icon-theme korla-icon-theme
 ```
 Cursor Theme
 ```bash
-yay -S capitaine-cursors
+yay -S capitaine-cursors whitesur-cursor-theme-git
 ```
 
 ### Plasma & Qt
@@ -155,10 +155,6 @@ yay -S kvantum-qt5 whitesur-kde-theme-git
 Color
 ```bash
 yay -S materia-kde
-```
-Wallpaper
-```bash
-yay -S dynamic-wallpaper-mojave-kde-git dynamic-wallpaper-catalina-kde-git
 ```
 Window Decoration
 ```bash
@@ -177,8 +173,4 @@ yay -S latte-dock kwin-scripts-window-colors
 GTK Theme
 ```bash
 yay -S whitesur-gtk-theme-git
-```
-Wallpaper
-```bash
-yay -S dynamic-wallpaper-mojave-gnome-timed-git dynamic-wallpaper-catalina-gnome-timed-git
 ```
