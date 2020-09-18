@@ -3,7 +3,7 @@
 ## Display Server
 🖥️ Xorg is the display server we will use
 ```bash
-pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xkill
+pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xkill
 ```
 
 ## Desktop Environment
