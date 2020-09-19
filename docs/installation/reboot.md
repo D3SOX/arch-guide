@@ -2,6 +2,6 @@
 ```
 exit
 umount -R /mnt
-telinit 6
+reboot
 ```
 Continue with [Post-Installation](/post-installation/)
