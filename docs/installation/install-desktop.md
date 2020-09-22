@@ -3,7 +3,7 @@
 ## Display Server
 🖥️ Xorg is the display server we will use
 ```bash
-pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xkill
+pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xkill xorg-xinput xorg-xwininfo
 ```
 
 ## Desktop Environment
@@ -16,7 +16,7 @@ pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xk
 
 ### KDE Plasma
 ```bash
-pacman -S plasma kdialog packagekit-qt5 kcalc icoutils libappimage konsole dolphin kdegraphics-thumbnailers svgpart ffmpegthumbs kdenetwork-filesharing gwenview ark kate okular kcron kdf filelight print-manager
+pacman -S plasma kdialog packagekit-qt5 kcalc icoutils libappimage konsole dolphin kdegraphics-thumbnailers svgpart ffmpegthumbs kdenetwork-filesharing gwenview kimageformats ark kate okular kcron kdf filelight print-manager
 ```
 If you want to use KDE Connect (Pairing with Android phone)
 ```bash
