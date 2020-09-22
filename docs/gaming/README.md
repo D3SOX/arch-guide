@@ -75,11 +75,14 @@ If this command prints out a value which is equal or greater to `524288` you're 
 ulimit -Hn
 ```
 
-However, if it doesn't:
+However, if it doesn't or you want to further improve it:
 ```bash
-sudo nano /etc/security/limits.conf
+sudo nano /etc/systemd/system.conf
+sudo nano /etc/systemd/user.conf
 ```
-append this (Replace `username` with your username)
-```bash
-username hard nofile 524288
+append this in both files
+```ini
+DefaultLimitNOFILE=1024:1048576
 ```
+
+Source: <https://github.com/zfigura/wine/blob/master/README.esync>
