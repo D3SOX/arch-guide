@@ -93,7 +93,7 @@ yay -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 
 git clone https://aur.archlinux.org/ttf-ms-win10.git
 cd ttf-ms-win10
 ```
-Read `PKGBUILD` and copy all windows files into the directory and then run `makepkg -rsi`
+Read `PKGBUILD` and copy all windows files into the directory and then run `makepkg -rsi --skipchecksums`
 
 ### macOS Fonts
 🗚 If you want the San Francisco Font by Apple
