@@ -86,3 +86,6 @@ DefaultLimitNOFILE=1024:1048576
 ```
 
 Source: <https://github.com/zfigura/wine/blob/master/README.esync>
+
+## Other tweaks
+The Arch wiki has a page dedicated to [Gaming](https://wiki.archlinux.org/index.php/gaming) with a few other tweaks you might want to look into.
