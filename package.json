@@ -13,7 +13,7 @@
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.7.0",
+    "@vuepress/plugin-back-to-top": "^1.7.1",
     "vuepress": "^1.7.1",
     "vuepress-plugin-smooth-scroll": "^0.0.10",
     "vuepress-theme-yuu": "^2.3.0"
