@@ -22,7 +22,7 @@ pacman -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugin
 ### General packages
 ```bash
 pacman -S system-config-printer foomatic-db foomatic-db-engine gutenprint gsfonts cups cups-pdf cups-filters sane
-systemctl enable org.cups.cupsd.service saned.socket
+systemctl enable cups.service saned.socket
 ```
 ### Qt Scan Application
 Use this if you use KDE Plasma or LXQt
