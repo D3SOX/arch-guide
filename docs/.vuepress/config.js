@@ -51,6 +51,10 @@ module.exports = {
         link: '/installation/',
       },
       {
+        text: 'Encryption',
+        link: '/encryption/',
+      },
+      {
         text: 'Post-Installation',
         link: '/post-installation/'
       },
