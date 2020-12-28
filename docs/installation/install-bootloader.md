@@ -1,5 +1,10 @@
 # Install Bootloader
 
+::: tip
+When doing disk encryption, finish the steps on the [encryption page](/encryption/#adjust-linux-kernel-hooks).
+It will guide you back to the main installation when needed.
+:::
+
 If you don't know which one you should use re-visit [Live Setup/Check if booted in BIOS or UEFI](./live-setup.md#check-if-booted-in-bios-or-uefi)
 
 ## UEFI

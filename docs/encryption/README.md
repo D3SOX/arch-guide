@@ -104,6 +104,8 @@ Additionally, enable the swap
 swapon /dev/mapper/main-swap
 ```
 
+When following the guide for a normal installation, you can go back to the [base installation page](/installation/base-installation.html) now.
+
 ## Adjust linux kernel hooks
 Edit the file `/etc/mkinitcpio.conf` to contain the following line
 ```
@@ -145,6 +147,8 @@ After that, you can install grub. Use the following commands to do that. **Make 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck --debug
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+When following the guide for a normal installation, you can go back to the [configure system page](/installation/configure-system.html) now.
 
 ## Additional resources
 For more information, you can visit the following pages:

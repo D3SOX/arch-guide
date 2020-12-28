@@ -6,6 +6,10 @@ In the following X and Y are placeholders. Replace them with your corresponding 
 
 ## Partitioning
 
+::: tip
+If you want to do disk encryption, go to the [encryption page](/encryption/). It will guide you back to the main installation when needed.
+:::
+
 ### List partition table
 
 To get an overview you can list your partition table to find out the device you want to use
