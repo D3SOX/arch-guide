@@ -1,7 +1,7 @@
 # Introduction
 
 ## Why this guide?
-The Arch Wiki has these informations spread across multiple pages and I think this is much more clearly layed out and straight forward.
+The Arch Wiki has this information spread across multiple pages and I think this is much more clearly layed out and straight forward.
 It also contains some packages and decisions that are personal preference.
 
 ## Important other resources
