@@ -16,4 +16,4 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BUILD_DIR: docs/.vuepress/dist/
         BUILD_SCRIPT: yarn && yarn build
-        PAGES_CNAME: arch.d3sox.icu
+        PAGES_CNAME: arch.d3sox.me
