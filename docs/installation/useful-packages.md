@@ -76,7 +76,7 @@ pacman -S <driver>
 ```
 - `xf86-video-amdgpu` is for newer AMD GPUs
 - `xf86-video-nouveau` is the open source NVIDIA driver
-- `xf86-video-intel` is for intel GPUs
+- `xf86-video-intel` is the open source Intel driver (You probably want to leave this out and it will use the modesetting driver. For more information refer to [the wiki](https://wiki.archlinux.org/index.php/Intel_graphics#Installation))
 - `xf86-video-ati` is for older AMD GPUs
 - `xf86-video-vmware` for VirtualBox, VMWare, QEMU
 - `xf86-video-fbdev` for Hyper-V
@@ -96,6 +96,21 @@ pacman -S libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau 
 Only install this package if you are using an Intel GPU
 ```bash
 pacman -S vulkan-intel
+```
+
+### Add kernel module
+```bash
+nano /etc/mkinitcpio.conf
+```
+Change `MODULES=()` to
+- `MODULES=(amdgpu)` if you installed `amdgpu`
+- `MODULES=(nvidia)` if you installed `nvidia`
+- `MODULES=(i915)` if you installed `xf86-video-intel`
+- for any other driver you can skip this step
+
+and run
+```bash
+mkinitcpio -P
 ```
 
 ## Networking
