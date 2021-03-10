@@ -147,10 +147,14 @@ pacman -S pavucontrol
 ```
 
 🔇 PulseAudio fix notifications muting some media players
+
+When entering a voice call any media applications might be muted. To disable this:
 ```bash
 nano /etc/pulse/default.pa
 ```
 💥 Comment (add # in front of) `# load-module module-role-cork`
+
+Source: <https://wiki.archlinux.org/index.php/PulseAudio#Disable_muting_media_on_entering_voice_call_(module-role-cork)>
 
 ## ADB
 If you want the Android Debug Bridge working with your user:
