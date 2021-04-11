@@ -98,7 +98,7 @@ Read `PKGBUILD` and copy all windows files into the directory and then run `make
 ### macOS Fonts
 🗚 If you want the San Francisco Font by Apple
 ```bash
-yay -S otf-san-francisco-pro otf-san-francisco-mono
+yay -S --mflags --skipchecksums otf-san-francisco otf-san-francisco-mono
 ```
 
 ## Nano syntax highlighting
