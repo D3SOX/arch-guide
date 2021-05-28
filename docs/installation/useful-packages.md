@@ -7,7 +7,7 @@ pacman -S jshon expac git wget acpid avahi net-tools xdg-user-dirs
 systemctl enable acpid avahi-daemon systemd-timesyncd
 ```
 
-If system is running on a SSD
+If system is running on an SSD
 ```bash
 systemctl enable fstrim.timer
 ```
