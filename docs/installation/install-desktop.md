@@ -62,6 +62,7 @@ See also <https://wiki.archlinux.org/index.php/MATE>
 ```bash
 pacman -S deepin deepin-extra
 nano /etc/lightdm/lightdm.conf
+# append this line to use the deepin specific greeter
 greeter-session=lightdm-deepin-greeter
 ```
 See also <https://wiki.archlinux.org/index.php/Deepin>
