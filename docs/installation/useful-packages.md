@@ -35,7 +35,7 @@ Use this if you use another desktop environment
 pacman -S simple-scan
 ```
 ### UI for HP Printers
-🖨 Install this if you have a HP Printer
+🖨 Install this if you have an HP Printer
 ```bash
 pacman -S hplip
 ```
