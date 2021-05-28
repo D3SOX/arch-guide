@@ -26,7 +26,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 ### Change root
-After you entered this command you are basically in the installed system
+After you entered this command, you are basically in the installed system
 ```bash
 arch-chroot /mnt
 ```

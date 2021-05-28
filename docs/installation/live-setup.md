@@ -12,7 +12,7 @@ Set your keymap (replace `yourkeymap` with your keymap e.g. `de-latin1`)
 loadkeys yourkeymap
 ```
 
-## If you use WiFi to connect to your router
+## If you use Wi-Fi to connect to your router
 📶 Use this tool to connect to your network
 ```bash
 iwctl
@@ -41,4 +41,4 @@ timedatectl set-ntp true
 ls /sys/firmware/efi/efivars
 ```
 If the directory does not exist, the system may be booted in Legacy BIOS Mode.
-Most likely you want to do a UEFI install so please double check if your system supports UEFI and you selected the correct entry in the boot menu (In most cases prefixed with UEFI)
+Most likely you want to do a UEFI install so please double-check if your system supports UEFI and you selected the correct entry in the boot menu (In most cases prefixed with UEFI)

@@ -7,7 +7,7 @@ passwd
 ```
 
 ## Add your user
-🧑 This will be your user you use to log in. For group reference see <https://wiki.archlinux.org/index.php/Users_and_groups#Group_list>
+🧑 This will be your user you'll use to log in. For group reference see <https://wiki.archlinux.org/index.php/Users_and_groups#Group_list>
 ```bash
 useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/bash yourusername
 passwd yourusername

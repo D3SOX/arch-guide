@@ -75,7 +75,7 @@ If this command prints out a value which is equal or greater to `524288` you're 
 ulimit -Hn
 ```
 
-However, if it doesn't or you want to further improve it:
+However, if it doesn't, or you want to further improve it:
 ```bash
 sudo nano /etc/systemd/system.conf
 sudo nano /etc/systemd/user.conf

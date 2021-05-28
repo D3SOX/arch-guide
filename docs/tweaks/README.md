@@ -7,7 +7,7 @@ sidebar: auto
 ## Performance tweaks
 
 ### Decrease swappiness
-You may want to decrease the swappiness if you have enough RAM so the system only uses swap when it absolutely has to
+You may want to decrease the swappiness if you have enough RAM, so the system only uses swap when it absolutely has to
 ```bash
 sudo nano /etc/sysctl.d/99-swappiness.conf
 ```
@@ -246,7 +246,7 @@ gsettings set org.nemo.desktop show-desktop-icons true
 
 ### System
 
-I recommend Timeshift to backup your system. Install it with
+I recommend Timeshift to back up your system. Install it with
 ```
 yay -S timeshift cronie
 systemctl enable --now cronie
@@ -255,11 +255,11 @@ For more information please refer to <https://github.com/teejee2008/timeshift>
 
 ### Personal files
 
-I recommend Déjà Dup to backup your personal files. Install it with
+I recommend Déjà Dup to back up your personal files. Install it with
 ```bash
 yay -S deja-dup
 ```
-You may want to exclude certain folders (like Nextcloud or other cloud services, Games, .cache, .config and .local/share if you don't want to backup your program config files)
+You may want to exclude certain folders (like Nextcloud or other cloud services, Games, .cache, .config and .local/share if you don't want to back up your program config files)
 
 ### Packages / Services List
 

@@ -76,14 +76,14 @@ pacman -S <driver>
 ```
 - `xf86-video-amdgpu` is for newer AMD GPUs
 - `xf86-video-nouveau` is the open source NVIDIA driver
-- `xf86-video-intel` is the open source Intel driver (You probably want to leave this out and it will use the modesetting driver. For more information refer to [the wiki](https://wiki.archlinux.org/index.php/Intel_graphics#Installation))
+- `xf86-video-intel` is the open source Intel driver (You probably want to leave this out, and it will use the modesetting driver. For more information refer to [the wiki](https://wiki.archlinux.org/index.php/Intel_graphics#Installation))
 - `xf86-video-ati` is for older AMD GPUs
 - `xf86-video-vmware` for VirtualBox, VMWare, QEMU
 - `xf86-video-fbdev` for Hyper-V
-- If you don't know it you can install all but it could happen that the internal graphics card is used if you install the driver for it
+- If you don't know it you can install all, but it could happen that the internal graphics card is used if you install the driver for it
 
 ### Nvidia proprietary driver
-Only install these packages if you are using a NVIDIA GPU
+Only install these packages if you are using an NVIDIA GPU
 ```bash
 pacman -S nvidia nvidia-lts nvidia-utils lib32-nvidia-utils libvdpau lib32-libvdpau
 ```
@@ -119,8 +119,8 @@ mkinitcpio -P
 pacman -S networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc
 systemctl enable NetworkManager
 ```
-### WiFi connection
-📶 Those are essential tools if you connect to the internet via WiFi
+### Wi-Fi connection
+📶 Those are essential tools if you connect to the internet via Wi-Fi
 ```bash
 pacman -S wireless_tools wpa_supplicant ifplugd dialog
 ```
@@ -148,7 +148,7 @@ pacman -S pavucontrol
 
 🔇 PulseAudio fix notifications muting some media players
 
-When entering a voice call any media applications might be muted. To disable this:
+When entering a voice call, any media applications might be muted. To disable this:
 ```bash
 nano /etc/pulse/default.pa
 ```

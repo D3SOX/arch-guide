@@ -10,7 +10,7 @@ sidebar: auto
 localectl set-x11-keymap yourkeymap
 ```
 
-## WiFi
+## Wi-Fi
 📶 You can use `nmtui` or `wifi-menu` to configure your network profile
 
 ## Oh My Zsh
@@ -48,7 +48,7 @@ cd .. && rm -rf yay
 📦 I recommend only to use ```yay``` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
 - Simple GTK: ```yay -S gnome-packagekit```
 - Simple Qt: ```yay -S apper```
-- Complex GTK: ```yay -S pamac-aur``` (Most beginner friendly)
+- Complex GTK: ```yay -S pamac-aur``` (Most beginner-friendly)
 - Complex Qt: ```yay -S octopi```
 
 ## Qt theme on GTK Desktop
@@ -93,7 +93,7 @@ yay -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 
 git clone https://aur.archlinux.org/ttf-ms-win10.git
 cd ttf-ms-win10
 ```
-Read `PKGBUILD` and copy all windows files into the directory and then run `makepkg -rsi --skipchecksums`
+Read `PKGBUILD` and copy all Windows files into the directory and then run `makepkg -rsi --skipchecksums`
 
 ### macOS Fonts
 🗚 If you want the San Francisco Font by Apple
