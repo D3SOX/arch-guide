@@ -36,7 +36,7 @@ cd .. && rm -rf yay
 
 `paru` is a good alternative to `yay`. It's easy to use due to its similarity with yay's CLI.
 To install it, simply execute the following commands.
-```
+```bash
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
