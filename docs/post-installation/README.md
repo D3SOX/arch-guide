@@ -43,24 +43,24 @@ makepkg -rsi
 cd .. && rm -rf paru
 ```
 
-## Yay Cheat sheet
-(This also applies to paru)
+### Cheat sheet
+(Unless explicitly mentioned, this also applies to `paru`)
 - `yay` Update system
 - `yay xyz` Install xyz
 - `yay -Rns xyz` Uninstall xyz
 - `yay -Rdd xyz` Force remove xyz (should not be used)
-- `yay -Yc` Uninstall not explicitly installed optional dependencies
+- `yay -Yc` / `paru -c` Uninstall not explicitly installed optional dependencies
 - `yay -Si xyz` Show remote package
 - `yay -Qi xyz` Show local package
 - `yay -Qq` List installed packages
 - `yay -Qqe` List explicitly installed packages
 
 ## If you want a graphical package manager
-📦 I recommend only to use ```yay``` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
-- Simple GTK: ```yay -S gnome-packagekit```
-- Simple Qt: ```yay -S apper```
-- Complex GTK: ```yay -S pamac-aur``` (Most beginner-friendly)
-- Complex Qt: ```yay -S octopi```
+📦 I recommend only to use `yay`/`paru` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
+- Simple GTK: `yay -S gnome-packagekit`
+- Simple Qt: `yay -S apper`
+- Complex GTK: `yay -S pamac-aur` (Most beginner-friendly)
+- Complex Qt: `yay -S octopi`
 
 ## Qt theme on GTK Desktop
 
