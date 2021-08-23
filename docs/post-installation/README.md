@@ -33,23 +33,34 @@ cd yay
 makepkg -rsi
 cd .. && rm -rf yay
 ```
-## Yay Cheat sheet
+
+`paru` is a good alternative to `yay`. It's easy to use due to its similarity with yay's CLI.
+To install it, simply execute the following commands.
+```bash
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -rsi
+cd .. && rm -rf paru
+```
+
+### Cheat sheet
+(Unless explicitly mentioned, this also applies to `paru`)
 - `yay` Update system
 - `yay xyz` Install xyz
 - `yay -Rns xyz` Uninstall xyz
 - `yay -Rdd xyz` Force remove xyz (should not be used)
-- `yay -Yc` Uninstall not explicitly installed optional dependencies
+- `yay -Yc` / `paru -c` Uninstall not explicitly installed optional dependencies
 - `yay -Si xyz` Show remote package
 - `yay -Qi xyz` Show local package
 - `yay -Qq` List installed packages
 - `yay -Qqe` List explicitly installed packages
 
 ## If you want a graphical package manager
-📦 I recommend only to use ```yay``` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
-- Simple GTK: ```yay -S gnome-packagekit```
-- Simple Qt: ```yay -S apper```
-- Complex GTK: ```yay -S pamac-aur``` (Most beginner-friendly)
-- Complex Qt: ```yay -S octopi```
+📦 I recommend only to use `yay`/`paru` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
+- Simple GTK: `yay -S gnome-packagekit`
+- Simple Qt: `yay -S apper`
+- Complex GTK: `yay -S pamac-aur` (Most beginner-friendly)
+- Complex Qt: `yay -S octopi`
 
 ## Qt theme on GTK Desktop
 
@@ -85,6 +96,10 @@ yay -S linux-apfs-dkms-git
 🗛 Those are some essential font packages
 ```bash
 yay -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation libertinus-font
+```
+If you want you can install all available fonts which takes about 1 GB of space
+```bash
+yay -S all-repository-fonts
 ```
 
 ### Windows Fonts
