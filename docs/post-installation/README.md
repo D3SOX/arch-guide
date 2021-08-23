@@ -33,7 +33,18 @@ cd yay
 makepkg -rsi
 cd .. && rm -rf yay
 ```
+
+`paru` is a good alternative to `yay`. It's easy to use due to its similarity with yay's CLI.
+To install it, simply execute the following commands.
+```
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+cd .. && rm -rf paru
+```
+
 ## Yay Cheat sheet
+(This also applies to paru)
 - `yay` Update system
 - `yay xyz` Install xyz
 - `yay -Rns xyz` Uninstall xyz
@@ -84,7 +95,7 @@ yay -S linux-apfs-dkms-git
 ### General Fonts
 🗛 Those are some essential font packages
 ```bash
-yay -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation libertinus-font
+yay -S all-repository-fonts
 ```
 
 ### Windows Fonts
