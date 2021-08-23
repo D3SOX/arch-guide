@@ -39,7 +39,7 @@ To install it, simply execute the following commands.
 ```bash
 git clone https://aur.archlinux.org/paru.git
 cd paru
-makepkg -si
+makepkg -rsi
 cd .. && rm -rf paru
 ```
 
