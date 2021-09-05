@@ -12,11 +12,6 @@ If system is running on an SSD
 systemctl enable fstrim.timer
 ```
 
-## Media Codecs
-```bash
-pacman -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi gst-transcoder x265 x264 lame
-```
-
 ## Printer support
 🖨️ Add some packages needed for printing and scanning
 ### General packages

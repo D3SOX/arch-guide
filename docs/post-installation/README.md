@@ -62,6 +62,11 @@ cd .. && rm -rf paru
 - Complex GTK: `yay -S pamac-aur` (Most beginner-friendly)
 - Complex Qt: `yay -S octopi`
 
+## Media Codecs
+```bash
+yay -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi gst-transcoder x265 x264 lame
+```
+
 ## Qt theme on GTK Desktop
 
 If you use a GTK desktop and want Qt apps to use your GTK Theme you have 2 choices
