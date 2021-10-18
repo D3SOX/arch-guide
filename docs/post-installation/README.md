@@ -92,7 +92,7 @@ echo "export QT_QPA_PLATFORMTHEME=qt5ct" >> ~/.profile
 ## If you want to read APFS Partitions
 💽 If you have a Hackintosh installation you can use this to access your files from it
 ```bash
-yay -S linux-apfs-dkms-git
+yay -S linux-apfs-rw-dkms-git
 ```
 
 ## Fonts
