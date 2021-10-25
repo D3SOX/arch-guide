@@ -110,8 +110,8 @@ yay -S all-repository-fonts
 ### Windows Fonts
 🗛 If you want the Windows/Microsoft fonts (f.e. for Office Suites and required by certain games under Wine)
 ```bash
-git clone https://aur.archlinux.org/ttf-ms-win10.git
-cd ttf-ms-win10
+git clone https://aur.archlinux.org/ttf-ms-win11.git
+cd ttf-ms-win11
 ```
 Read `PKGBUILD` and copy all Windows files into the directory and then run `makepkg -rsi --skipchecksums`
 
