@@ -2,7 +2,7 @@
 
 ## General packages
 ```bash
-pacman -S linux-headers linux-lts-headers dkms
+pacman -S linux-headers dkms
 pacman -S jshon expac git wget acpid avahi net-tools xdg-user-dirs
 systemctl enable acpid avahi-daemon systemd-timesyncd
 ```
@@ -80,7 +80,7 @@ pacman -S <driver>
 ### Nvidia proprietary driver
 Only install these packages if you are using an NVIDIA GPU
 ```bash
-pacman -S nvidia nvidia-lts nvidia-utils lib32-nvidia-utils libvdpau lib32-libvdpau
+pacman -S nvidia nvidia-utils lib32-nvidia-utils libvdpau lib32-libvdpau
 ```
 ### AMD Utils
 Only install these packages if you are using an AMD GPU

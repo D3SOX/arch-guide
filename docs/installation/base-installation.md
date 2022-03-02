@@ -10,7 +10,7 @@ pacman -Syy
 ## Start the installation
 ⏳ This will install the system and may take a while
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware linux-lts sysfsutils usbutils e2fsprogs inetutils netctl nano less which man-db man-pages
+pacstrap /mnt base base-devel linux linux-firmware sysfsutils usbutils e2fsprogs inetutils netctl nano less which man-db man-pages
 ```
 ::: warning
 ⚠️ To ensure system stability append the microcode package for your CPU

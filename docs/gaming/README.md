@@ -50,9 +50,10 @@ yay -S lutris steam gamemode lib32-gamemode
 ::: warning
 If you are using NVIDIA and want to use a custom kernel you need to use `nvidia-dkms` since `nvidia` is just for the mainline `linux` kernel and `nvidia-lts` for `linux-lts`
 ```bash
-yay -Rdd nvidia nvidia-lts
+yay -Rdd nvidia
 yay -S nvidia-dkms
 ```
+Alternatively you can use [nvidia-all](https://github.com/Frogging-Family/nvidia-all) to get the latest NVIDIA driver for all kernels
 :::
 
 ### Zen
