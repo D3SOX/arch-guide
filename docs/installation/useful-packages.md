@@ -35,13 +35,6 @@ pacman -S simple-scan
 pacman -S hplip
 ```
 
-## Bluetooth support
-🔵 Add some packages needed for proper bluetooth support
-```bash
-pacman -S bluez bluez-utils pulseaudio-bluetooth
-systemctl enable bluetooth
-```
-
 ## Input Driver
 These are some packages needed for certain input devices to function properly. It does no harm to install them, even if you wouldn't need them
 ```bash
@@ -129,27 +122,53 @@ pacman -S nfs-utils cifs-utils ntfs-3g exfat-utils
 
 ## Sound
 🔊 Some essential packages for sound
+
+### PulseAudio
+Default audio server for Linux
 ```bash
 pacman -S alsa-utils pulseaudio-alsa pulseaudio-equalizer
 ```
-Control app for Qt Desktop (KDE Plasma or LXQt)
+See <https://wiki.archlinux.org/title/PulseAudio>
+
+#### Fix muting some media players
+
+🔇 PulseAudio by default might mute media applications when entering a voice call. To disable this:
+```bash
+mkdir -p /etc/pulse/default.pa.d
+nano /etc/pulse/default.pa.d/no-cork.pa
+```
+Put this in the file and save it:
+```
+unload-module module-role-cork
+```
+
+Source: <https://wiki.archlinux.org/index.php/PulseAudio#Disable_muting_media_on_entering_voice_call_(module-role-cork)>
+
+### PipeWire
+Alternatively use can PipeWire:
+```bash
+pacman -S alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber
+```
+See <https://wiki.archlinux.org/title/PipeWire>
+
+### Control app
+For Qt based desktops (e.g. KDE Plasma or LXQt)
 ```bash
 pacman -S pavucontrol-qt
 ```
-Control app for GTK Desktop (another desktop environment)
+For GTK based desktop (another desktop environment)
 ```bash
 pacman -S pavucontrol
 ```
 
-🔇 PulseAudio fix notifications muting some media players
-
-When entering a voice call, any media applications might be muted. To disable this:
-```bash
-nano /etc/pulse/default.pa
+## Bluetooth support
+🔵 Add some packages needed for proper bluetooth support
+```bash 
+pacman -S bluez bluez-utils
+systemctl enable bluetooth
+# only if you installed PulseAudio in the previous step:
+pacman -S pulseaudo-bluetooth
 ```
-💥 Comment (add # in front of) `# load-module module-role-cork`
-
-Source: <https://wiki.archlinux.org/index.php/PulseAudio#Disable_muting_media_on_entering_voice_call_(module-role-cork)>
 
 ## ADB
 If you want the Android Debug Bridge working with your user:
