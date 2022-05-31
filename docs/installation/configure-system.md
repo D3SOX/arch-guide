@@ -57,9 +57,17 @@ nano /etc/pacman.conf
 👾 multilib is a repository which contains 32-bit libraries and is disabled by default (needed for some games & software; highly recommended to enable)
 
 💥 Uncomment (remove the # in front of) the following lines
-```
+```ini
 [multilib]
 Include = /etc/pacman.d/mirrorlist
+```
+
+### Enable parallel downloads
+🌐 Depending on your internet connection enabling parallel downloads may speed up the package download process
+
+💥 Uncomment (remove the # in front of) this line and set it to your desired value
+```ini
+ParallelDownloads = 5
 ```
 
 ### Extra candy
