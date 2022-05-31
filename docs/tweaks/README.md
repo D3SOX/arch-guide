@@ -108,27 +108,6 @@ sudo nano /etc/fonts/conf.d/75-joypixels.conf
     </match>
 
     <!--
-    If other fonts contain emoji glyphs, they could interfere and make some emojis rendered in wrong font (often in black-and-white).
-    For example, DejaVu Sans contains black-and-white emojis, which we can remove using the following trick:
-    -->
-    <match target="scan">
-        <test name="family" compare="contains">
-            <string>DejaVu</string>
-        </test>
-        <edit name="charset" mode="assign" binding="same">
-            <minus>
-                <name>charset</name>
-                <charset>
-                    <range>
-                        <int>0x1f600</int>
-                        <int>0x1f640</int>
-                    </range>
-                </charset>
-            </minus>
-        </edit>
-    </match>
-
-    <!--
     Recognize legacy ways of writing JoyPixels family name.
     -->
     <match target="pattern">
