@@ -62,8 +62,8 @@ After partitioning, you want to have a layout that looks like this:
 
 Now we create a crypt container on `sdXZ` using LUKS. For more information, see these two pages on the arch wiki regarding dm-crypt:
 
--   [Encrypting an entire system: LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
--   [Device encryption: Encryption options for LUKS mode](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Encryption_options_for_LUKS_mode)
+- [Encrypting an entire system: LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
+- [Device encryption: Encryption options for LUKS mode](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Encryption_options_for_LUKS_mode)
 
 Encrypt `dev/sdXZ`. You will be prompted for a password. **Care for different keyboard layouts when typing in the password!**
 
@@ -184,7 +184,7 @@ When following the guide for a normal installation, you can go back to the [conf
 
 For more information, you can visit the following pages:
 
--   <https://wiki.archlinux.org/index.php/Dm-crypt>
--   <https://www.timoschindler.de/arch-linux-uefi-boot-mit-grub-und-verschluesseltem-lvm/> (German)
+- <https://wiki.archlinux.org/index.php/Dm-crypt>
+- <https://www.timoschindler.de/arch-linux-uefi-boot-mit-grub-und-verschluesseltem-lvm/> (German)
 
 This guide tries to sum them all up in one neat page.

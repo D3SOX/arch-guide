@@ -17,24 +17,33 @@ Also see [this awesome video](https://youtu.be/8-8hFPjM46M) about partitioning b
 ### List partition table
 
 To get an overview you can list your partition table to find out the device you want to use
+
 ```bash
 fdisk -l
 ```
 
 ### Start partitioning tool
+
 ▶️ Text-based
+
 ```bash
 fdisk /dev/sdX
 ```
+
 ▶️ UEFI only text-based
+
 ```bash
 gdisk /dev/sdX
 ```
+
 ▶️ Graphical (Recommended for beginners)
+
 ```bash
 cfdisk /dev/sdX
 ```
+
 ▶️ UEFI only Graphical (Recommended for beginners)
+
 ```bash
 cgdisk /dev/sdX
 ```
@@ -42,8 +51,9 @@ cgdisk /dev/sdX
 ### Create partitions
 
 #### Decide partition table type
- - BIOS: You can use both but this guide uses DOS
- - UEFI: You need to use GPT
+
+- BIOS: You can use both but this guide uses DOS
+- UEFI: You need to use GPT
 
 #### GPT (UEFI)
 
@@ -64,10 +74,10 @@ cgdisk /dev/sdX
 
 #### GPT (BIOS)
 
-
 ### Size recommendations
 
 #### EFI system
+
 - At least: 150MB
 - Recommended: 300MB
 
@@ -85,23 +95,29 @@ Taken from <https://docs.voidlinux.org/installation/live-images/partitions.html>
 ## Format partitions
 
 ### EFI system partition
+
 ```bash
 mkfs.fat -F32 -n EFI /dev/sdXY
 ```
 
 ### Create root filesystem
+
 💽 This will create the filesystem where the system will be installed on
+
 ```bash
 mkfs.ext4 -L ROOT /dev/sdXY
 ```
 
 ### Create home partition filesystem
+
 🏠 If you created a separate home partition
+
 ```bash
 mkfs.ext4 -L HOME /dev/sdXY
 ```
 
 ### Create Swap
+
 ```bash
 mkswap -L SWAP /dev/sdXY
 swapon /dev/sdXY

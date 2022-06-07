@@ -1,15 +1,15 @@
 {
-  "name": "arch-guide",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/D3SOX/arch-guide",
-  "license": "GPL-3.0-or-later",
-  "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
-  },
-  "devDependencies": {
-    "vitepress": "^1.0.0-alpha.1"
-  }
+    "name": "arch-guide",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/D3SOX/arch-guide",
+    "license": "GPL-3.0-or-later",
+    "scripts": {
+        "dev": "vitepress dev docs",
+        "build": "vitepress build docs",
+        "serve": "vitepress serve docs"
+    },
+    "devDependencies": {
+        "vitepress": "^1.0.0-alpha.1"
+    }
 }

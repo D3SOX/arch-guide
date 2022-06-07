@@ -33,20 +33,20 @@ export default defineConfig({
         sidebar: {
             '/installation/': [
                 {
-                text: 'Installation',
-                items: [
-                    { text: 'Introduction', link: '/installation/' },
-                    { text: 'Live Setup', link: '/installation/live-setup' },
-                    { text: 'Partitioning & Formatting', link: '/installation/partitioning-formatting' },
-                    { text: 'Mount file systems', link: '/installation/mount-filesystems' },
-                    { text: 'Base installation', link: '/installation/base-installation' },
-                    { text: 'Install Bootloader', link: '/installation/install-bootloader' },
-                    { text: 'Configure system', link: '/installation/configure-system' },
-                    { text: 'Setup users', link: '/installation/setup-users' },
-                    { text: 'Install Desktop', link: '/installation/install-desktop' },
-                    { text: 'Useful packages', link: '/installation/useful-packages' },
-                    { text: 'Reboot', link: '/installation/reboot' },
-                ]
+                    text: 'Installation',
+                    items: [
+                        { text: 'Introduction', link: '/installation/' },
+                        { text: 'Live Setup', link: '/installation/live-setup' },
+                        { text: 'Partitioning & Formatting', link: '/installation/partitioning-formatting' },
+                        { text: 'Mount file systems', link: '/installation/mount-filesystems' },
+                        { text: 'Base installation', link: '/installation/base-installation' },
+                        { text: 'Install Bootloader', link: '/installation/install-bootloader' },
+                        { text: 'Configure system', link: '/installation/configure-system' },
+                        { text: 'Setup users', link: '/installation/setup-users' },
+                        { text: 'Install Desktop', link: '/installation/install-desktop' },
+                        { text: 'Useful packages', link: '/installation/useful-packages' },
+                        { text: 'Reboot', link: '/installation/reboot' },
+                    ]
                 }
             ],
         },
@@ -69,6 +69,6 @@ export default defineConfig({
             appId: 'VSE2VGLZX4',
             apiKey: '53080ab135085dba76f54868a2536998',
             indexName: 'arch-guide'
-          },      
+        },
     },
 });
