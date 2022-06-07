@@ -1,16 +1,8 @@
-# Copy to clipboard
-Doesn't look good because text is no longer centered
+# Line Highlighting
 
-`yarn add vuepress-plugin-code-copy -D`
+- Make use of line highlighting where applicable
+- See https://vitepress.vuejs.org/guide/markdown.html#line-highlighting-in-code-blocks
 
-`.vuepress/config.js`
-```js
-['vuepress-plugin-code-copy', {
-  color: '#3eaf7c',
-  staticIcon: true,
-}]
-```
 
 # Other TODOs
-- Add instructions to Dualboot with Windows 10
-- Add a section for Full Disk Encryption
+- Add instructions to dual-boot with Windows 10

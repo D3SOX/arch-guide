@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # Gaming
 
 ## Video driver

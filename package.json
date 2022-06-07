@@ -1,21 +1,15 @@
 {
   "name": "arch-guide",
-  "version": "0.0.1",
-  "description": "My installation instructions and guide for Arch Linux",
+  "version": "1.0.0",
   "main": "index.js",
-  "authors": {
-    "name": "D3SOX"
-  },
-  "repository": "https://github.com/D3SOX/arch-guide-vuepress",
-  "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
-  },
+  "repository": "https://github.com/D3SOX/arch-guide",
   "license": "GPL-3.0-or-later",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.8.3",
-    "vuepress": "^1.8.3",
-    "vuepress-plugin-smooth-scroll": "^0.0.10",
-    "vuepress-theme-yuu": "^3.1.1"
+    "vitepress": "^1.0.0-alpha.1"
   }
 }

@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # Post-Installation
 
 ## Set X11 Keymap

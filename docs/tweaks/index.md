@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # Some fixes and tweaks
 
 ## Performance tweaks

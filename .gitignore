@@ -17,11 +17,3 @@ logs
 *.sln
 *.sw?
 
-# VuePress stuff
-pids
-coverage/
-run
-.nyc_output
-.basement
-config.local.js
-basement_dist
