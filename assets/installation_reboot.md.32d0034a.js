@@ -1,0 +1,4 @@
+import{_ as a,c as s,o as t,a as o}from"./app.962f199f.js";const u='{"title":"Reboot","description":"","frontmatter":{},"headers":[],"relativePath":"installation/reboot.md","lastUpdated":1654608707000}',e={name:"installation/reboot.md"},n=o(`<h1 id="reboot" tabindex="-1">Reboot <a class="header-anchor" href="#reboot" aria-hidden="true">#</a></h1><div class="language-"><span class="copy"></span><pre><code><span class="line"><span style="color:#A6ACCD;">exit</span></span>
+<span class="line"><span style="color:#A6ACCD;">umount -R /mnt</span></span>
+<span class="line"><span style="color:#A6ACCD;">reboot</span></span>
+<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre></div><div class="tip custom-block"><p class="custom-block-title">TIP</p><p>Now continue with <a href="/post-installation/">Post-Installation</a></p></div>`,3),l=[n];function c(p,r,i,_,d,h){return t(),s("div",null,l)}var b=a(e,[["render",c]]);export{u as __pageData,b as default};
