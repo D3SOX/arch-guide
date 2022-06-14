@@ -1,6 +1,6 @@
 # Reboot
 
-```
+```bash
 exit
 umount -R /mnt
 reboot
