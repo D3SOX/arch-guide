@@ -5,6 +5,10 @@ export default defineConfig({
     title: "Arch Linux Guide",
     description: 'My installation instructions and guide for Arch Linux',
 
+    head: [
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    ],
+
     lastUpdated: true,
 
     themeConfig: {
