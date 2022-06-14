@@ -24,4 +24,4 @@ Build for production
 yarn build
 ```
 
-For more details, please head VuePress's [documentation](https://v1.vuepress.vuejs.org/).
+For more details, please head VitePress's [documentation](https://vitepress.vuejs.org/).
