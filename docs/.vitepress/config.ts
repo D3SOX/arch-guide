@@ -52,9 +52,7 @@ export default defineConfig({
         },
 
         editLink: {
-            repo: 'D3SOX/arch-guide',
-            dir: 'docs',
-            branch: 'master',
+            pattern: 'https://github.com/D3SOX/arch-guide/edit/master/docs/:path',
         },
 
         socialLinks: [
