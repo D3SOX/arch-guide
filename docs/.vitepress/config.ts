@@ -64,9 +64,9 @@ export default defineConfig({
         },
 
         algolia: {
-            appId: 'VSE2VGLZX4',
-            apiKey: '53080ab135085dba76f54868a2536998',
-            indexName: 'arch-guide'
+            appId: '0E44DZDX9K',
+            apiKey: '05f13b57950ef1918e20d7bb444ba444',
+            indexName: 'arch-d3sox'
         },
     },
 });
