@@ -7,6 +7,7 @@ export default defineConfig({
 
     head: [
         ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+        ['script', { defer: '', 'data-domain': 'arch.d3sox.me', src: 'https://analytics.soundux.rocks/js/script.js' }]
     ],
 
     lastUpdated: true,
