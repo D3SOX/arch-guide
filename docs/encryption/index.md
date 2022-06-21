@@ -128,7 +128,7 @@ When following the guide for a normal installation, you can go back to the [base
 
 Edit the file `/etc/mkinitcpio.conf` to contain the following line
 
-```
+```ini
 HOOKS=(base udev autodetect modconf block filesystems keyboard keymap encrypt lvm2 fsck)
 ```
 
@@ -157,7 +157,7 @@ blkid | grep "UUID="
 
 Adjust `/etc/default/grub` because of the encryption. Replace `<UUID>` with the UUID of the device you found earlier.
 
-```
+```ini
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root"
 ```
 
@@ -165,7 +165,7 @@ GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root"
 If you want to type the password with the keyboard layout of your home country, you can adjust the line like this with
 the languages of your choice. This example uses the german keyboard layout.
 
-```
+```ini
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root lang=de locale=de_DE.UTF-8"
 ```
 
@@ -173,7 +173,7 @@ GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root lang
 
 After that, you can install grub. Use the following commands to do that. **Make sure no errors are reported here.**
 
-```
+```bash
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck --debug
 grub-mkconfig -o /boot/grub/grub.cfg
 ```

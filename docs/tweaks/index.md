@@ -237,7 +237,7 @@ gsettings set org.nemo.desktop show-desktop-icons true
 
 I recommend Timeshift to back up your system. Install it with
 
-```
+```bash
 yay -S timeshift cronie
 systemctl enable --now cronie
 ```

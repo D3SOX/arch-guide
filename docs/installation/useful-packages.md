@@ -191,7 +191,7 @@ nano /etc/pulse/default.pa.d/no-cork.pa
 
 Put this in the file and save it:
 
-```
+```ini
 unload-module module-role-cork
 ```
 
