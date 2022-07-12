@@ -229,7 +229,7 @@ pacman -S pavucontrol
 pacman -S bluez bluez-utils
 systemctl enable bluetooth
 # only if you installed PulseAudio in the previous step:
-pacman -S pulseaudo-bluetooth
+pacman -S pulseaudio-bluetooth
 ```
 
 ## ADB
