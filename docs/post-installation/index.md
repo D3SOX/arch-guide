@@ -133,12 +133,29 @@ yay -S all-repository-fonts
 
 🗛 If you want the Windows/Microsoft fonts (f.e. for Office Suites and required by certain games under Wine)
 
+#### With an existing Windows Installation / ISO
+
+When you have an existing Windows Installation / ISO you can use the following package script
+
 ```bash
 git clone https://aur.archlinux.org/ttf-ms-win11.git
 cd ttf-ms-win11
 ```
 
 Read `PKGBUILD` and copy all Windows files into the directory and then run `makepkg -rsi --skipchecksums`
+
+#### Without an existing Windows Installation / ISO
+
+:::tip 
+
+There's a package that automatically downloads and extracts the fonts
+
+```bash
+yay -S ttf-ms-win11-auto
+```
+
+:::
+
 
 ### macOS Fonts
 
