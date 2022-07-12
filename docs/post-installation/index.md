@@ -75,7 +75,7 @@ cd .. && rm -rf paru
 ## Media Codecs
 
 ```bash
-yay -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi gst-transcoder x265 x264 lame
+yay -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi x265 x264 lame
 ```
 
 ## Qt theme on GTK Desktop
