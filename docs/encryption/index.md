@@ -113,7 +113,7 @@ Mount the system
 ```bash
 mount /dev/mapper/main-root /mnt
 mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot
+mount /dev/sdXY /mnt/boot
 ```
 
 Additionally, enable the swap
@@ -149,7 +149,7 @@ pacman -S grub efibootmgr dosfstools
 
 Additionally, install the microcode packages for your cpu, e.g. `intel-ucode` or `amd-ucode`.
 
-Now find the UUID of the boot partition (in the line starting with `/dev/sdXY`) and note it down
+Now find the UUID of the root partition (in the line starting with `/dev/sdXZ`) and note it down
 
 ```bash
 blkid | grep "UUID="
