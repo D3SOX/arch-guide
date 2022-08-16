@@ -24,7 +24,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies 👨🏻‍💻
-        run: yarn
+        run: yarn install --frozen-lockfile
 
       - name: Generate 👷
         run: yarn build
@@ -33,6 +33,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/.vitepress/dist
+          publish_dir: docs/.vitepress/dist
           commit_message: ${{ github.event.head_commit.message }}
           cname: arch.d3sox.me
