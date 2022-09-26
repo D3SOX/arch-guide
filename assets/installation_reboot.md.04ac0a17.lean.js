@@ -1,0 +1,1 @@
+import{_ as a,c as s,o as t,a as o}from"./app.209cad3b.js";const u=JSON.parse('{"title":"Reboot","description":"","frontmatter":{},"headers":[],"relativePath":"installation/reboot.md","lastUpdated":1664197484000}'),e={name:"installation/reboot.md"},n=o("",3),l=[n];function c(p,i,r,_,d,b){return t(),s("div",null,l)}const m=a(e,[["render",c]]);export{u as __pageData,m as default};
