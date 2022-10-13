@@ -1,0 +1,1 @@
+import{_ as a,c as t,o as s,a as o}from"./app.abce89b4.js";const u=JSON.parse('{"title":"Reboot","description":"","frontmatter":{},"headers":[],"relativePath":"installation/reboot.md","lastUpdated":1665677949000}'),e={name:"installation/reboot.md"},n=o("",3),l=[n];function c(p,i,r,_,d,b){return s(),t("div",null,l)}const m=a(e,[["render",c]]);export{u as __pageData,m as default};
