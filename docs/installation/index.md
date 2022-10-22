@@ -16,6 +16,6 @@ Especially for the installation please read
 Sometimes packages need manual intervention which is announced at  
 <https://www.archlinux.org/news/>  
 So keep an eye on it or ideally subscribe to the mailing list at  
-<https://lists.archlinux.org/listinfo/arch-announce>
+<https://lists.archlinux.org/mailman3/lists/arch-announce.lists.archlinux.org/>
 
-This tutorial is inspired by <https://sourceforge.net/projects/ezos/files/ArchStuff/> and have taken out some stuff of it
+This tutorial is inspired by <https://sourceforge.net/projects/ezos/files/ezarcher/Guides/> and have taken out some stuff of it

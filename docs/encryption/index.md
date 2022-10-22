@@ -2,7 +2,7 @@
 
 ::: warning
 This guide will mostly care for UEFI systems. Steps shouldn't be much different for non-UEFI systems. Have a look at the
-arch wiki regarding [system encryption](https://wiki.archlinux.org/index.php/Dm-crypt) for more information.
+Arch wiki regarding [system encryption](https://wiki.archlinux.org/index.php/Dm-crypt) for more information.
 :::
 
 ::: tip
@@ -42,7 +42,7 @@ After you got the disk to use, run
 gdisk /dev/sdX
 ```
 
-to partition the disk accordingly. For more information on how to use gdisk, see the [arch wiki](https://wiki.archlinux.org/index.php/GPT_fdisk).
+to partition the disk accordingly. For more information on how to use gdisk, see the [Arch wiki](https://wiki.archlinux.org/index.php/GPT_fdisk).
 For completeness, the most used commands are:
 | Command | What does this do? |
 | ------- | -------------------- |
@@ -60,7 +60,7 @@ After partitioning, you want to have a layout that looks like this:
 
 ### Create crypt container
 
-Now we create a crypt container on `sdXZ` using LUKS. For more information, see these two pages on the arch wiki regarding dm-crypt:
+Now we create a crypt container on `sdXZ` using LUKS. For more information, see these two pages on the Arch wiki regarding dm-crypt:
 
 - [Encrypting an entire system: LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
 - [Device encryption: Encryption options for LUKS mode](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Encryption_options_for_LUKS_mode)
