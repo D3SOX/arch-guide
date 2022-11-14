@@ -163,7 +163,7 @@ pacman -S wireless_tools wpa_supplicant ifplugd dialog
 
 ```bash
 pacman -S p7zip unrar unarchiver unzip unace xz rsync
-pacman -S nfs-utils cifs-utils ntfs-3g exfat-utils
+pacman -S nfs-utils cifs-utils ntfs-3g exfat-utils gvfs udisks2
 ```
 
 ## Sound
