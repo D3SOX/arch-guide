@@ -13,16 +13,16 @@ pacman -Syy
 
 ⏳ This will install the system and may take a while
 
-```bash
-pacstrap /mnt base base-devel linux linux-firmware sysfsutils usbutils e2fsprogs inetutils netctl nano less which man-db man-pages
-```
-
 ::: warning
-⚠️ To ensure system stability append the microcode package for your CPU
+⚠️ To ensure system stability append the microcode package for your CPU to the following command
 - `amd-ucode` for AMD CPUs
 - `intel-ucode` for Intel CPUs
 - See <https://wiki.archlinux.org/index.php/Microcode>
 :::
+
+```bash
+pacstrap /mnt base base-devel linux linux-firmware sysfsutils usbutils e2fsprogs inetutils netctl nano less which man-db man-pages
+```
 
 ### Create filesystem table
 
