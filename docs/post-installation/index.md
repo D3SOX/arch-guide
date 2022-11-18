@@ -179,7 +179,7 @@ yay -S ttf-ms-win11-auto
 🗚 If you want the San Francisco Font by Apple
 
 ```bash
-yay -S --mflags --skipchecksums otf-san-francisco otf-san-francisco-mono
+yay -S otf-san-francisco otf-san-francisco-mono
 ```
 
 ## Nano syntax highlighting
