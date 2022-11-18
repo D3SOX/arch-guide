@@ -38,9 +38,13 @@ yay -S vkd3d lib32-vkd3d faudio lib32-faudio
 
 ### Custom Wine/Proton
 
-For custom Proton, I recommend [GloriousEgroll](https://github.com/GloriousEggroll/proton-ge-custom/releases) or [Tk-Glitch](https://github.com/Frogging-Family/wine-tkg-git/releases)
+For custom Proton, I recommend GloriousEgroll's builds. For [Steam](https://github.com/GloriousEggroll/proton-ge-custom/) and [Lutris](https://github.com/GloriousEggroll/wine-ge-custom/).
+These can be installed using [ProtonUp-Qt](https://github.com/DavidoTek/ProtonUp-Qt)
+```bash
+yay -S protonup-qt
+```
 
-Tk-Glitch also provides a wine version which can be installed with `yay -U wine-tkg*.pkg.tar.zst`
+For custom Wine, I recommend [Tk-Glitch](https://github.com/Frogging-Family/wine-tkg-git/) which can be downloaded from [here](https://nightly.link/Frogging-Family/wine-tkg-git/workflows/wine-arch/master/wine-tkg-build.zip) and installed with `unzip wine-tkg-build.zip && yay -U wine-tkg-*.pkg.tar.zst`
 
 ## Programs
 
