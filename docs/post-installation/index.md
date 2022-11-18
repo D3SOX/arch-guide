@@ -75,7 +75,7 @@ yay -S rebuild-detector
 - `yay -Qq` List installed packages
 - `yay -Qqe` List explicitly installed packages
 
-## If you want a graphical package manager
+## Graphical package manager
 
 📦 I recommend only to use `yay`/`paru` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
 
@@ -83,6 +83,11 @@ yay -S rebuild-detector
 - Simple Qt: `yay -S apper`
 - Complex GTK: `yay -S pamac-aur` (Most beginner-friendly)
 - Complex Qt: `yay -S octopi`
+
+🛒 If you want an even easier to use GUI, you can install a Software Center. They can't install AUR packages though.
+
+- GTK Software Center: `yay -S gnome-software gnome-software-packagekit-plugin`
+- Qt Software Center: `yay -S discover packagekit-qt5`
 
 ## Media Codecs
 
