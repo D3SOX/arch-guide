@@ -49,6 +49,18 @@ makepkg -rsi
 cd .. && rm -rf paru
 ```
 
+In the following commands replace `yay` with `paru`.
+
+### Hold up
+
+::: warning
+Be careful when using AUR packages. You might need to re-build them when the dependencies in the repositories get updated.  
+I recommend installing [rebuild-detector](https://github.com/maximbaz/rebuild-detector) to get notified when a package needs to be re-built.  
+```bash
+yay -S rebuild-detector
+```
+:::
+
 ### Cheat sheet
 
 (Unless explicitly mentioned, this also applies to `paru`)
