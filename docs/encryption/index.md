@@ -158,7 +158,7 @@ blkid | grep "UUID="
 Adjust `/etc/default/grub` because of the encryption. Replace `<UUID>` with the UUID of the device you found earlier.
 
 ```ini
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root"
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:cryptroot root=/dev/mapper/main-root"
 ```
 
 ::: tip
@@ -166,7 +166,7 @@ If you want to type the password with the keyboard layout of your home country, 
 the languages of your choice. This example uses the german keyboard layout.
 
 ```ini
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root lang=de locale=de_DE.UTF-8"
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:cryptroot root=/dev/mapper/main-root lang=de locale=de_DE.UTF-8"
 ```
 
 :::
