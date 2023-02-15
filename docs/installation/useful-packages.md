@@ -130,7 +130,7 @@ nano /etc/mkinitcpio.conf
 Change `MODULES=()` to
 
 - `MODULES=(amdgpu)` if you installed `xf86-video-amdgpu`
-- `MODULES=(nvidia)` if you installed `nvidia`
+- `MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)` if you installed `nvidia`
 - `MODULES=(i915)` if you installed `xf86-video-intel`
 - for any other driver you can skip this step
 
