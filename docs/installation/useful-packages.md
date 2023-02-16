@@ -105,6 +105,11 @@ Only install these packages if you are using an NVIDIA GPU
 pacman -S nvidia nvidia-utils lib32-nvidia-utils libvdpau lib32-libvdpau
 ```
 
+::: danger Warning
+NVIDIA's Linux drivers have a bad reputation when it comes to stability and compatibility with all systems.
+If you experience any problems later on consult https://wiki.archlinux.org/title/NVIDIA for troubleshooting.
+:::
+
 ### AMD Utils
 
 Only install these packages if you are using an AMD GPU
