@@ -121,7 +121,9 @@ Only install this package if you are using an Intel GPU
 pacman -S vulkan-intel
 ```
 
-### Add kernel module
+### Early KMS start
+
+Some systems require early KMS start to work properly. Read the [Arch Wiki entry](https://wiki.archlinux.org/title/Kernel_mode_setting#Early_KMS_start) about it
 
 ```bash
 nano /etc/mkinitcpio.conf
@@ -131,8 +133,10 @@ Change `MODULES=()` to
 
 - `MODULES=(amdgpu)` if you installed `xf86-video-amdgpu`
 - `MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)` if you installed `nvidia`
-- `MODULES=(i915)` if you installed `xf86-video-intel`
+- `MODULES=(i915)` if you are using Intel graphics
 - for any other driver you can skip this step
+
+Remove `kms` inside `HOOKS=()` if you installed `nvidia`
 
 and run
 
