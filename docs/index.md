@@ -7,7 +7,7 @@ hero:
     name: Arch Linux Guide
     tagline: My installation instructions and guide for Arch Linux
     image:
-        src: https://www.archlinux.org/static/logos/archlinux-logo-dark-1200dpi.b42bd35d5916.png
+        src: https://archlinux.org/static/logos/archlinux-logo-light-1200dpi.7ccd81fd52dc.png
         alt: Logo
     actions:
         - theme: brand
