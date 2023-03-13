@@ -11,7 +11,7 @@ export default defineConfig({
     ],
 
     lastUpdated: true,
-    cleanUrls: 'without-subfolders',
+    cleanUrls: true,
 
     themeConfig: {
         nav: [
