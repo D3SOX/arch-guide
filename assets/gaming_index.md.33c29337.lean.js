@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as l,Q as n}from"./chunks/framework.7addaa9c.js";const A=JSON.parse('{"title":"Gaming","description":"","frontmatter":{},"headers":[],"relativePath":"gaming/index.md","lastUpdated":1680629768000}'),e={name:"gaming/index.md"},o=n("",40),t=[o];function p(r,i,c,C,y,d){return l(),a("div",null,t)}const D=s(e,[["render",p]]);export{A as __pageData,D as default};
