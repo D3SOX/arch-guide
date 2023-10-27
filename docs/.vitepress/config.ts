@@ -69,10 +69,13 @@ export default defineConfig({
             message: 'Made by D3SOX with ❤️',
         },
 
-        algolia: {
-            appId: '0E44DZDX9K',
-            apiKey: '05f13b57950ef1918e20d7bb444ba444',
-            indexName: 'arch-d3sox'
+        search: {
+            provider: 'algolia',
+            options: {
+                appId: '0E44DZDX9K',
+                apiKey: '05f13b57950ef1918e20d7bb444ba444',
+                indexName: 'arch-d3sox'
+            }
         },
     },
 });
