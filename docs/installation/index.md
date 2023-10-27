@@ -18,4 +18,4 @@ Sometimes packages need manual intervention which is announced at
 So keep an eye on it or ideally subscribe to the mailing list at  
 <https://lists.archlinux.org/mailman3/lists/arch-announce.lists.archlinux.org/>
 
-This tutorial is inspired by <https://sourceforge.net/projects/ezos/files/ezarcher/Guides/> and have taken out some stuff of it
+This tutorial is inspired by <https://sourceforge.net/projects/ezos/files/ezarcher/Project_Files/> and have taken out some stuff of it
