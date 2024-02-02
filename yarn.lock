@@ -336,6 +336,18 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.5.0.tgz#748970e066839e33ed8c935061e370c4ab050517"
   integrity sha512-8kdW+brNhI/NzJ4fxDufuJUjepzINqJKLGHuxyAtpPG9bMbn8P5mtaCcbOm0EzLJ+atg+kF9dwg8jpclkVqx5w==
 
+"@shikijs/core@1.0.0-beta.3", "@shikijs/core@^1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-1.0.0-beta.3.tgz#c1bb20222286ccc2d39df602458cf5d64cca5bb3"
+  integrity sha512-SCwPom2Wn8XxNlEeqdzycU93SKgzYeVsedjqDsgZaz4XiiPpZUzlHt2NAEQTwTnPcHNZapZ6vbkwJ8P11ggL3Q==
+
+"@shikijs/transformers@^1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@shikijs/transformers/-/transformers-1.0.0-beta.3.tgz#0f559ec6e3d04aadb13b2132eaa5033d61f05849"
+  integrity sha512-ASQQQqxW4dANxMGw4yGkTjtMSsUaRhImv/lzJEdfJ3/eP8TVlVYnohOFQVgpLjBBYGy9P0l0oKrlbjiGosTJ/Q==
+  dependencies:
+    shiki "1.0.0-beta.3"
+
 "@types/linkify-it@*":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-3.0.4.tgz#def6a9bb0ce78140860602f16ace37a9997f086a"
@@ -406,10 +418,36 @@
     "@vue/compiler-dom" "3.4.15"
     "@vue/shared" "3.4.15"
 
-"@vue/devtools-api@^6.5.1":
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.5.1.tgz#7f71f31e40973eeee65b9a64382b13593fdbd697"
-  integrity sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==
+"@vue/devtools-api@^7.0.14":
+  version "7.0.14"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-7.0.14.tgz#27eedda650f09d991718741268b7cef823dd08a6"
+  integrity sha512-TluWR9qZ6aO11bwtYK8+fzXxBqLfsE0mWZz1q/EQBmO9k82Cm6deieLwNNXjNFJz7xutazoia5Qa+zTYkPPOfw==
+  dependencies:
+    "@vue/devtools-kit" "^7.0.14"
+
+"@vue/devtools-kit@^7.0.14":
+  version "7.0.14"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-kit/-/devtools-kit-7.0.14.tgz#39635f3478f0048d97df9b3dcceeae27a7ae3eec"
+  integrity sha512-wAAJazr4hI0aVRpgWOCVPw+NzMQdthhnprHHIg4njp1MkKrpCNGQ7MtQbZF1AltAA7xpMCGyyt+0kYH0FqTiPg==
+  dependencies:
+    "@vue/devtools-schema" "^7.0.14"
+    "@vue/devtools-shared" "^7.0.14"
+    hookable "^5.5.3"
+    mitt "^3.0.1"
+    perfect-debounce "^1.0.0"
+    speakingurl "^14.0.1"
+
+"@vue/devtools-schema@^7.0.14":
+  version "7.0.14"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-schema/-/devtools-schema-7.0.14.tgz#5b638859918a71c218108d0e8b39000e2813f1f2"
+  integrity sha512-tpUeCLVrdHX+KzWMLTAwx/vAPFbo6jAUi7sr6Q+0mBIqIVSSIxNr5wEhegiFvYva+OtDeM2OrT+f7/X/5bvZNg==
+
+"@vue/devtools-shared@^7.0.14":
+  version "7.0.14"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-shared/-/devtools-shared-7.0.14.tgz#7f2aee9c25a027d59962da90689d231a73a0e589"
+  integrity sha512-79RP1NDakBVWou9rDpVnT1WMjTbL1lJKm6YEOodjQ0dq5ehf0wsRbeYDhgAlnjehWRzTq5GAYFBFUPYBs0/QpA==
+  dependencies:
+    rfdc "^1.3.1"
 
 "@vue/reactivity@3.4.15":
   version "3.4.15"
@@ -559,6 +597,11 @@ fsevents@~2.3.3:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
+hookable@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/hookable/-/hookable-5.5.3.tgz#6cfc358984a1ef991e2518cb9ed4a778bbd3215d"
+  integrity sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==
+
 magic-string@^0.30.5:
   version "0.30.5"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.5.tgz#1994d980bd1c8835dc6e78db7cbd4ae4f24746f9"
@@ -576,10 +619,20 @@ minisearch@^6.3.0:
   resolved "https://registry.yarnpkg.com/minisearch/-/minisearch-6.3.0.tgz#985a2f1ca3c73c2d65af94f0616bfe57164b0b6b"
   integrity sha512-ihFnidEeU8iXzcVHy74dhkxh/dn8Dc08ERl0xwoMMGqp4+LvRSCgicb+zGqWthVokQKvCSxITlh3P08OzdTYCQ==
 
+mitt@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.1.tgz#ea36cf0cc30403601ae074c8f77b7092cdab36d1"
+  integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
+
 nanoid@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.7.tgz#d0c301a691bc8d54efa0a2226ccf3fe2fd656bd8"
   integrity sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==
+
+perfect-debounce@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/perfect-debounce/-/perfect-debounce-1.0.0.tgz#9c2e8bc30b169cc984a58b7d5b28049839591d2a"
+  integrity sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==
 
 picocolors@^1.0.0:
   version "1.0.0"
@@ -609,6 +662,11 @@ preact@^10.0.0:
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.7.3.tgz#f98c09a29cb8dbb22e5fc824a1edcc377fc42b5a"
   integrity sha512-giqJXP8VbtA1tyGa3f1n9wiN7PrHtONrDyE3T+ifjr/tTkg+2N4d/6sjC9WyJKv8wM7rOYDveqy5ZoFmYlwo4w==
 
+rfdc@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/rfdc/-/rfdc-1.3.1.tgz#2b6d4df52dffe8bb346992a10ea9451f24373a8f"
+  integrity sha512-r5a3l5HzYlIC68TpmYKlxWjmOP6wiPJ1vWv2HeLhNsRZMrCkxeqxiHlQ21oXmQ4F3SiryXBHhAD7JZqvOJjFmg==
+
 rollup@^4.2.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.5.0.tgz#358ee6947fe0e4c8bacdae6896539cade3107655"
@@ -628,29 +686,22 @@ rollup@^4.2.0:
     "@rollup/rollup-win32-x64-msvc" "4.5.0"
     fsevents "~2.3.2"
 
-shikiji-core@0.10.0, shikiji-core@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/shikiji-core/-/shikiji-core-0.10.0.tgz#4425f1f5055fec6759bf0c71f2cc406518fed17c"
-  integrity sha512-imG+bvRkuNlZUi2q9tMVfegRRouTpDxMFejpfF/6J+bFX3NDKtlW9T9iIAkBYnw4pcCtSwirW0AvkwlQR4wyxg==
-
-shikiji-transformers@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/shikiji-transformers/-/shikiji-transformers-0.10.0.tgz#73b205d36ef0a411e2b07b373c4828761fad826a"
-  integrity sha512-x9oYybeF/XOrIc6Mm8G1gU5ezunMxdgD4WwBTKrZ5tAmFFaNIWCjwZENgRt1uR4iMi0+pGH0g9bmrbraSC41nA==
+shiki@1.0.0-beta.3, shiki@^1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/shiki/-/shiki-1.0.0-beta.3.tgz#fbf76e59385a5b1c675532a393a63eb9e62e5659"
+  integrity sha512-z7cHTNSSvwGx2DfeLwjSNLo+HcVxifgNIzLm6Ye52eXcIwNHXT0wHbhy7FDOKSKveuEHBwt9opfj3Hoc8LE1Yg==
   dependencies:
-    shikiji "0.10.0"
-
-shikiji@0.10.0, shikiji@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/shikiji/-/shikiji-0.10.0.tgz#e7cc117c5a2ad5656a7bf6ea6c01e2b621a1552e"
-  integrity sha512-1dAzIOWbtM7B4Sem5BvE+CEdsebDsRA34SfCxM4qJ4PLgR73ZD92VEtNfbcoZ3xOLSqvtV0J9i4WpCgVsmQteg==
-  dependencies:
-    shikiji-core "0.10.0"
+    "@shikijs/core" "1.0.0-beta.3"
 
 source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+speakingurl@^14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/speakingurl/-/speakingurl-14.0.1.tgz#f37ec8ddc4ab98e9600c1c9ec324a8c48d772a53"
+  integrity sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==
 
 tabbable@^6.2.0:
   version "6.2.0"
@@ -668,24 +719,24 @@ vite@^5.0.12:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vitepress@^1.0.0-rc.40:
-  version "1.0.0-rc.40"
-  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.0.0-rc.40.tgz#ad63f04c5296fc20daf32a4edd46677e95398eca"
-  integrity sha512-1x9PCrcsJwqhpccyTR93uD6jpiPDeRC98CBCAQLLBb44a3VSXYBPzhCahi+2kwAYylu49p0XhseMPVM4IVcWcw==
+vitepress@^1.0.0-rc.41:
+  version "1.0.0-rc.41"
+  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.0.0-rc.41.tgz#c1956500f545d10c58312a179dcf0d13219b78d9"
+  integrity sha512-PAEoIIc9J//k/Wg39C6k86hZpXPmLZjRiTBwieDNeYGdevD7xr5Ve8o1W/w+e9dtyQMkuvzgianEamXDX3aj7g==
   dependencies:
     "@docsearch/css" "^3.5.2"
     "@docsearch/js" "^3.5.2"
+    "@shikijs/core" "^1.0.0-beta.3"
+    "@shikijs/transformers" "^1.0.0-beta.3"
     "@types/markdown-it" "^13.0.7"
     "@vitejs/plugin-vue" "^5.0.3"
-    "@vue/devtools-api" "^6.5.1"
+    "@vue/devtools-api" "^7.0.14"
     "@vueuse/core" "^10.7.2"
     "@vueuse/integrations" "^10.7.2"
     focus-trap "^7.5.4"
     mark.js "8.11.1"
     minisearch "^6.3.0"
-    shikiji "^0.10.0"
-    shikiji-core "^0.10.0"
-    shikiji-transformers "^0.10.0"
+    shiki "^1.0.0-beta.3"
     vite "^5.0.12"
     vue "^3.4.15"
 
