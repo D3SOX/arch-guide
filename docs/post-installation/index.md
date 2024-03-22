@@ -86,8 +86,8 @@ yay -S rebuild-detector
 
 🛒 If you want an even easier to use GUI, you can install a Software Center. They can't install AUR packages though.
 
-- GTK Software Center: `yay -S gnome-software gnome-software-packagekit-plugin`
-- Qt Software Center: `yay -S discover packagekit-qt5`
+- GTK Software Center: `yay -S gnome-software`
+- Qt Software Center: `yay -S discover packagekit-qt6`
 
 ## Media Codecs
 
