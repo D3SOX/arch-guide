@@ -433,28 +433,28 @@
     "@vue/compiler-dom" "3.4.23"
     "@vue/shared" "3.4.23"
 
-"@vue/devtools-api@^7.0.25":
-  version "7.0.25"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-7.0.25.tgz#240bff9ee5bbe684e0c7b29696e98b497179368d"
-  integrity sha512-fL6DlRp4MSXCLYcqYvKU7QhQZWE3Hfu7X8pC25BS74coJi7uJeSWs4tmrITcwFihNmC9S5GPiffkMdckkeWjzg==
+"@vue/devtools-api@^7.0.27":
+  version "7.0.27"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-7.0.27.tgz#bfbbfb1d632bdb71b7a9b5e3ed4314dab26a5440"
+  integrity sha512-BFCFCusSDcw2UcOFD/QeK7OxD1x2C/m+uAN30Q7jLKECSW53hmz0urzJmX834GuWDZX/hIxkyUKnLLfEIP1c/w==
   dependencies:
-    "@vue/devtools-kit" "^7.0.25"
+    "@vue/devtools-kit" "^7.0.27"
 
-"@vue/devtools-kit@^7.0.25":
-  version "7.0.25"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-kit/-/devtools-kit-7.0.25.tgz#5090cf606facefefe95cef4121f5660c97dbfbf0"
-  integrity sha512-wbLkSnOTsKHPb1mB9koFHUoSAF8Dp6Ii/ocR2+DeXFY4oKqIjCeJb/4Lihk4rgqEhCy1WwxLfTgNDo83VvDYkQ==
+"@vue/devtools-kit@^7.0.27":
+  version "7.0.27"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-kit/-/devtools-kit-7.0.27.tgz#23dfcc70da74291f5ec5456cc8a4644093b6045f"
+  integrity sha512-/A5xM38pPCFX5Yhl/lRFAzjyK6VNsH670nww2WbjFKWqlu3I+lMxWKzQkCW6A1V8bduITgl2kHORfg2gTw6QaA==
   dependencies:
-    "@vue/devtools-shared" "^7.0.25"
+    "@vue/devtools-shared" "^7.0.27"
     hookable "^5.5.3"
     mitt "^3.0.1"
     perfect-debounce "^1.0.0"
     speakingurl "^14.0.1"
 
-"@vue/devtools-shared@^7.0.25":
-  version "7.0.25"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-shared/-/devtools-shared-7.0.25.tgz#3ac36cb730a2609b34a6e8a3731a07859fc0bbc2"
-  integrity sha512-5+XYhcHSXuJSguYnNwL6/e6VTmXwCfryWQOkffh9ZU2zMByybqqqBrMWqvBkqTmMFCjPdzulo66xXbVbwLaElQ==
+"@vue/devtools-shared@^7.0.27":
+  version "7.0.27"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-shared/-/devtools-shared-7.0.27.tgz#99d6d64f502110bb4b20a4029029a16ea62ed837"
+  integrity sha512-4VxtmZ6yjhiSloqZZq2UYU0TBGxOJ8GxWvp5OlAH70zYqi0FIAyWGPkOhvfoZ7DKQyv2UU0mmKzFHjsEkelGyQ==
   dependencies:
     rfdc "^1.3.1"
 
@@ -712,10 +712,10 @@ tabbable@^6.2.0:
   resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-6.2.0.tgz#732fb62bc0175cfcec257330be187dcfba1f3b97"
   integrity sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==
 
-vite@^5.2.8:
-  version "5.2.8"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.2.8.tgz#a99e09939f1a502992381395ce93efa40a2844aa"
-  integrity sha512-OyZR+c1CE8yeHw5V5t59aXsUPPVTHMDjEZz8MgguLL/Q7NblxhZUlTu9xSPqlsUO/y+X7dlU05jdhvyycD55DA==
+vite@^5.2.9:
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.2.9.tgz#cd9a356c6ff5f7456c09c5ce74068ffa8df743d9"
+  integrity sha512-uOQWfuZBlc6Y3W/DTuQ1Sr+oIXWvqljLvS881SVmAj00d5RdgShLcuXWxseWPd4HXwiYBFW/vXHfKFeqj9uQnw==
   dependencies:
     esbuild "^0.20.1"
     postcss "^8.4.38"
@@ -723,10 +723,10 @@ vite@^5.2.8:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vitepress@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.1.1.tgz#9b0b4a06673764bd4d313f4c885676b4c708a2e6"
-  integrity sha512-8M4v+7K1AQSOnfNDtDVEPF/BFmmeA5291Y0uhq1qgAh5Sa6H2oiTxoW0YyFNtq/35kB33sEgkvZHflWM2sgrkw==
+vitepress@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.1.3.tgz#ded22392f5274680aaba8bb81dd4fb1c4741c02e"
+  integrity sha512-hGrIYN0w9IHWs0NQSnlMjKV/v/HLfD+Ywv5QdvCSkiT32mpNOOwUrZjnqZv/JL/WBPpUc94eghTUvmipxw0xrA==
   dependencies:
     "@docsearch/css" "^3.6.0"
     "@docsearch/js" "^3.6.0"
@@ -734,22 +734,22 @@ vitepress@^1.1.1:
     "@shikijs/transformers" "^1.3.0"
     "@types/markdown-it" "^14.0.1"
     "@vitejs/plugin-vue" "^5.0.4"
-    "@vue/devtools-api" "^7.0.25"
+    "@vue/devtools-api" "^7.0.27"
     "@vueuse/core" "^10.9.0"
     "@vueuse/integrations" "^10.9.0"
     focus-trap "^7.5.4"
     mark.js "8.11.1"
     minisearch "^6.3.0"
     shiki "^1.3.0"
-    vite "^5.2.8"
-    vue "^3.4.22"
+    vite "^5.2.9"
+    vue "^3.4.23"
 
 vue-demi@>=0.14.7:
   version "0.14.7"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.14.7.tgz#8317536b3ef74c5b09f268f7782e70194567d8f2"
   integrity sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA==
 
-vue@^3.4.22, vue@^3.4.23:
+vue@^3.4.23:
   version "3.4.23"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.4.23.tgz#9d5a990a71c5bd5446f80377828e6587cfc488d5"
   integrity sha512-X1y6yyGJ28LMUBJ0k/qIeKHstGd+BlWQEOT40x3auJFTmpIhpbKLgN7EFsqalnJXq1Km5ybDEsp6BhuWKciUDg==
