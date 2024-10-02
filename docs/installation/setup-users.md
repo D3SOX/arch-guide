@@ -28,6 +28,7 @@ chage -d 0 yourusername
 🧐 This will give your user administrative privileges
 
 ```bash
+pacman -S sudo
 EDITOR=nano visudo
 ```
 
