@@ -192,24 +192,10 @@ yay -S nano-syntax-highlighting
 
 ## Auto clean package cache
 
-🗑️ This will clear or move the package cache
+⚠️The cache can get hove over time so this is strongly encouraged.  
+🗑️ Install a configurable hook to cleanup the pacman package cache
 
 ```bash
 yay -S paccache-hook
 sudo nano /etc/paccache-hook.conf # Configure to your liking
 ```
-
-::: details Click me to view the code
-```ini
-[Trigger]
-Operation = Upgrade
-Operation = Install
-Operation = Remove
-Type = Package
-Target = *
-[Action]
-Description = Cleaning pacman cache...
-When = PostTransaction
-Exec = /usr/bin/paccache -rk 2
-```
-:::
