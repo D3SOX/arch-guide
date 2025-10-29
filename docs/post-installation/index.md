@@ -192,8 +192,9 @@ yay -S nano-syntax-highlighting
 
 ## Auto clean package cache
 
-⚠️The cache can get hove over time so this is strongly encouraged.  
-🗑️ Install a configurable hook to cleanup the pacman package cache
+⚠️The cache can get huge over time so it is strongly encouraged to install a hook like this
+
+🗑️ This install a configurable hook to cleanup the pacman package cache
 
 ```bash
 yay -S paccache-hook
