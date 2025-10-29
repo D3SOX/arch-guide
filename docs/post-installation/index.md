@@ -192,12 +192,11 @@ yay -S nano-syntax-highlighting
 
 ## Auto clean package cache
 
-🗑️ This will clear the package cache to only keep 1 version after every action
+🗑️ This will clear or move the package cache
 
 ```bash
-yay -S pacman-contrib
-sudo mkdir /etc/pacman.d/hooks
-sudo nano /etc/pacman.d/hooks/clean_package_cache.hook
+yay -S paccache-hook
+sudo nano /etc/paccache-hook.conf # Configure to your liking
 ```
 
 ::: details Click me to view the code
