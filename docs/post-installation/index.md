@@ -10,14 +10,14 @@ localectl set-x11-keymap yourkeymap
 
 ## Wi-Fi
 
-📶 You can use `nmtui` or `wifi-menu` to configure your network profile
+📶 You can use `nmtui` `wifi-menu` or your graphical network manager from your desktop environment to configure your network profile
 
 ## Oh My Zsh
 
 🤖 A delightful & open source framework for Zsh
 
 ```bash
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 ## Oh my Fish
@@ -98,34 +98,46 @@ yay -S rebuild-detector
 
 ## Graphical package manager
 
-📦 I recommend only to use `yay`/`paru` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
+📦 I recommend only to use `yay`/`paru` to update and install packages but (especially if you are a beginner) you may want a software center or a graphical package manager
 
-### Simple GTK
+🛒 If you want an even easier to use GUI, you can install a Software Center. They can only manage Flatpaks and Firmware updates and not install AUR packages though.
+
+### GTK Software Center (Recommended for GNOME and other GTK DEs)
 
 ::: code-group
 
 ```bash [paru]
-paru -S gnome-packagekit
+paru -S gnome-software fwupd
 ```
 
 ```bash [yay]
-yay -S gnome-packagekit
+yay -S gnome-software fwupd
 ```
 
 :::
 
-### Simple Qt
+I would recommend you to go for bazaar instead. First [Install Flatpak](https://flathub.org/en/setup/Arch) and then install Bazaar with:
+
+```bash
+flatpak install flathub io.github.kolunmi.Bazaar
+````
+
+### Qt Software Center (Recommended for Plasma or other Qt DEs)
 
 ::: code-group
 
 ```bash [paru]
-paru -S apper
+paru -S discover flatpak fwupd
 ```
 
 ```bash [yay]
-yay -S apper
+yay -S discover flatpak fwupd
 ```
 
+:::
+
+::: warning Warning
+You can install packagekit-qt6 to get support for Arch packages in Discover but this is strongly discouraged because it is not very stable. It is recommended to rely on tested CLI tools.
 :::
 
 ### Complex GTK (Most beginner-friendly)
@@ -156,38 +168,6 @@ yay -S octopi
 
 :::
 
-🛒 If you want an even easier to use GUI, you can install a Software Center. They can't install AUR packages though.
-
-### GTK Software Center
-
-::: code-group
-
-```bash [paru]
-paru -S gnome-software gnome-software-packagekit-plugin
-```
-
-```bash [yay]
-yay -S gnome-software gnome-software-packagekit-plugin
-```
-
-:::
-
-### Qt Software Center
-
-::: code-group
-
-```bash [paru]
-paru -S discover packagekit-qt5
-```
-
-```bash [yay]
-yay -S discover packagekit-qt5
-```
-
-:::
-- GTK Software Center: `yay -S gnome-software`
-- Qt Software Center: `yay -S discover packagekit-qt6`
-
 ## Media Codecs
 
 ::: code-group
@@ -204,44 +184,18 @@ yay -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-u
 
 ## Qt theme on GTK Desktop
 
-If you use a GTK desktop and want Qt apps to use your GTK Theme you have 2 choices
-
-You need to install the Qt5 Style plugins for both
+You can use Qt6Ct to set the style of Qt applications
 
 ::: code-group
 
 ```bash [paru]
-paru -S qt5-styleplugins
+paru -S qt6ct
+echo "export QT_QPA_PLATFORMTHEME=qt6ct" >> ~/.profile
 ```
 
 ```bash [yay]
-yay -S qt5-styleplugins
-```
-
-:::
-
-### Convert GTK2 theme
-
-🧮 This may not look good with every GTK Theme
-
-```bash
-echo "export QT_QPA_PLATFORMTHEME=gtk2" >> ~/.profile
-```
-
-### Qt5
-
-You can use Qt5Ct instead
-
-::: code-group
-
-```bash [paru]
-paru -S qt5ct
-echo "export QT_QPA_PLATFORMTHEME=qt5ct" >> ~/.profile
-```
-
-```bash [yay]
-yay -S qt5ct
-echo "export QT_QPA_PLATFORMTHEME=qt5ct" >> ~/.profile
+yay -S qt6ct
+echo "export QT_QPA_PLATFORMTHEME=qt6ct" >> ~/.profile
 ```
 
 :::
@@ -281,9 +235,17 @@ yay -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 
 ::::
 If you want you can install all available fonts which takes about 1 GB of space
 
-```bash
+:::: code-group
+
+```bash [paru]
+paru -S all-repository-fonts
+```
+
+```bash [yay]
 yay -S all-repository-fonts
 ```
+
+::::
 
 ### Windows Fonts
 
@@ -302,32 +264,53 @@ Read `PKGBUILD` and copy all Windows files into the directory and then run `make
 
 #### Without an existing Windows Installation / ISO
 
-:::tip 
+:::: tip
 
 There's a package that automatically downloads and extracts the fonts
 
-```bash
+:::: code-group
+
+```bash [paru]
+paru -S ttf-ms-win11-auto
+```
+
+```bash [yay]
 yay -S ttf-ms-win11-auto
 ```
 
-:::
-
+::::
 
 ### macOS Fonts
 
 🗚 If you want the San Francisco Font by Apple
 
-```bash
+:::: code-group
+
+```bash [paru]
+paru -S otf-san-francisco otf-san-francisco-mono
+```
+
+```bash [yay]
 yay -S otf-san-francisco otf-san-francisco-mono
 ```
+
+::::
 
 ## Nano syntax highlighting
 
 📃 This package provides syntax highlighting enhancements to the nano text editor
 
-```bash
+:::: code-group
+
+```bash [paru]
+paru -S nano-syntax-highlighting
+```
+
+```bash [yay]
 yay -S nano-syntax-highlighting
 ```
+
+::::
 
 ## Auto clean package cache
 
@@ -335,7 +318,16 @@ yay -S nano-syntax-highlighting
 
 🗑️ This install a configurable hook to cleanup the pacman package cache
 
-```bash
+:::: code-group
+
+```bash [paru]
+paru -S paccache-hook
+sudo nano /etc/paccache-hook.conf # Configure to your liking
+```
+
+```bash [yay]
 yay -S paccache-hook
 sudo nano /etc/paccache-hook.conf # Configure to your liking
 ```
+
+::::

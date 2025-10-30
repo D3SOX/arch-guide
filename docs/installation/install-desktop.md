@@ -2,11 +2,23 @@
 
 ## Display Server
 
-🖥️ Xorg is the display server we will use
+🖥️ Choose between Xorg or Wayland as your display server
+
+### Xorg
+
+Xorg is a traditional display server
 
 ```bash
 pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xkill xorg-xinput xorg-xwininfo
 ```
+
+### Wayland
+
+Wayland is a modern display server protocol. Most desktop environments (GNOME, KDE Plasma, etc.) include Wayland support out of the box — you typically do not install `wayland` by itself.
+
+If you choose a desktop environment (e.g., GNOME, KDE Plasma, Xfce, Cinnamon), the display server is handled for you and Wayland support is included where applicable. You don't need to install Wayland separately.
+
+See also <https://wiki.archlinux.org/title/Wayland>
 
 ## Desktop Environment
 
@@ -19,7 +31,7 @@ pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xk
 ### KDE Plasma
 
 ```bash
-pacman -S plasma kdialog packagekit-qt6 kcalc icoutils libappimage konsole dolphin kdegraphics-thumbnailers svgpart ffmpegthumbs kdenetwork-filesharing gwenview kimageformats ark kate okular kcron kdf filelight print-manager
+pacman -S plasma kdialog kcalc icoutils libappimage konsole dolphin kdegraphics-thumbnailers svgpart ffmpegthumbs kdenetwork-filesharing gwenview kimageformats ark kate okular kcron kdf filelight print-manager
 ```
 
 If you want to use KDE Connect (Pairing with Android phone)
@@ -28,7 +40,7 @@ If you want to use KDE Connect (Pairing with Android phone)
 pacman -S kdeconnect sshfs
 ```
 
-See also <https://wiki.archlinux.org/index.php/KDE>
+See also <https://wiki.archlinux.org/title/KDE>
 
 ### Xfce
 
@@ -36,7 +48,7 @@ See also <https://wiki.archlinux.org/index.php/KDE>
 pacman -S xfce4 xfce4-goodies
 ```
 
-See also <https://wiki.archlinux.org/index.php/Xfce>
+See also <https://wiki.archlinux.org/title/Xfce>
 
 ### GNOME
 
@@ -44,7 +56,7 @@ See also <https://wiki.archlinux.org/index.php/Xfce>
 pacman -S gnome gnome-extra
 ```
 
-See also <https://wiki.archlinux.org/index.php/GNOME>
+See also <https://wiki.archlinux.org/title/GNOME>
 
 ### LXDE
 
@@ -52,7 +64,7 @@ See also <https://wiki.archlinux.org/index.php/GNOME>
 pacman -S lxde lxdm-gtk3
 ```
 
-See also <https://wiki.archlinux.org/index.php/LXDE>
+See also <https://wiki.archlinux.org/title/LXDE>
 
 ### LXQt
 
@@ -60,31 +72,31 @@ See also <https://wiki.archlinux.org/index.php/LXDE>
 pacman -S lxqt breeze-icons pcmanfm-qt qterminal lxqt-sudo polkit-qt5
 ```
 
-See also <https://wiki.archlinux.org/index.php/LXQt>
+See also <https://wiki.archlinux.org/title/LXQt>
 
 ### Cinnamon
 
 ```bash
-pacman -S cinnamon cinnamon-translations nemo-fileroller nemo-image-converter nemo-preview xed xreader gnome-terminal metacity gnome-shell
+pacman -S cinnamon cinnamon-translations nemo-fileroller nemo-image-converter nemo-preview xed xreader gnome-terminal
 ```
 
-See also <https://wiki.archlinux.org/index.php/Cinnamon>
+See also <https://wiki.archlinux.org/title/Cinnamon>
 
 ### Budgie
 
 ```bash
-pacman -S budgie-desktop network-manager-applet gnome
+pacman -S budgie-desktop network-manager-applet
 ```
 
-See also <https://wiki.archlinux.org/index.php/Budgie>
+See also <https://wiki.archlinux.org/title/Budgie>
 
 ### Mate
 
 ```bash
-pacman -S mate mate-extra gdm
+pacman -S mate mate-extra
 ```
 
-See also <https://wiki.archlinux.org/index.php/MATE>
+See also <https://wiki.archlinux.org/title/MATE>
 
 ### Deepin
 
@@ -95,7 +107,7 @@ nano /etc/lightdm/lightdm.conf
 greeter-session=lightdm-deepin-greeter
 ```
 
-See also <https://wiki.archlinux.org/index.php/Deepin>
+See also <https://wiki.archlinux.org/title/Deepin>
 
 ## Display/Desktop Manager
 
@@ -108,31 +120,31 @@ pacman -S lxdm-gtk3
 systemctl enable lxdm
 ```
 
-See also <https://wiki.archlinux.org/index.php/LXDM>
+See also <https://wiki.archlinux.org/title/LXDM>
 
 ### SDDM (Included with KDE Plasma)
 
 ```bash
 pacman -S sddm
-systemctl enable sddm
+systemctl enable --now sddm
 ```
 
-See also <https://wiki.archlinux.org/index.php/SDDM>
+See also <https://wiki.archlinux.org/title/SDDM>
 
 ### GDM (Included with GNOME/Budgie/MATE)
 
 ```bash
 pacman -S gdm
-systemctl enable gdm
+systemctl enable --now gdm
 ```
 
-See also <https://wiki.archlinux.org/index.php/GDM>
+See also <https://wiki.archlinux.org/title/GDM>
 
 ### LightDM
 
 ```bash
 pacman -S lightdm lightdm-gtk-greeter
-systemctl enable lightdm
+systemctl enable --now lightdm
 ```
 
-See also <https://wiki.archlinux.org/index.php/LightDM>
+See also <https://wiki.archlinux.org/title/LightDM>
