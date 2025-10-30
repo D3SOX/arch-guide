@@ -17,3 +17,4 @@ logs
 *.sln
 *.sw?
 
+docs/.vitepress/cache

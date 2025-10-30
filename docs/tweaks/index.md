@@ -21,9 +21,17 @@ An Out Of Memory (OOM) killer terminates applications when you would otherwise r
 ⚠️ This may lead to data loss if an application with unsaved data is killed.
 :::
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S earlyoom
+```
+
+```bash [yay]
 yay -S earlyoom
 ```
+
+:::
 
 ## Compatibility tweaks
 
@@ -33,14 +41,33 @@ yay -S earlyoom
 
 ```bash
 sudo ln -sf /usr/lib/libncursesw.so.6 /usr/lib/libtinfo.so.5
+```
+
+::: code-group
+
+```bash [paru]
+paru -S libsndio-61-compat
+```
+
+```bash [yay]
 yay -S libsndio-61-compat
 ```
 
+:::
+
 ### Spotify local files
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S ffmpeg-compat-57 ffmpeg
+```
+
+```bash [yay]
 yay -S ffmpeg-compat-57 ffmpeg
 ```
+
+:::
 
 ## Fix on shutdown "Failed to start user manager service for user 174" (sddm)
 
@@ -50,9 +77,17 @@ sudo chage --expiredate -1 sddm
 
 ## Force Color Emoji
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S ttf-joypixels
+```
+
+```bash [yay]
 yay -S ttf-joypixels
 ```
+
+:::
 
 If the default font includes some emoji characters, they will be used over the characters provided by a dedicated emoji font, resulting in inconsistent display. Use the following config to enforce rendering emojis via JoyPixels.
 ::: warning
@@ -237,10 +272,19 @@ gsettings set org.nemo.desktop show-desktop-icons true
 
 I recommend Timeshift to back up your system. Install it with
 
-```bash
-yay -S timeshift cronie
-systemctl enable --now cronie
+::: code-group
+
+```bash [paru]
+paru -S timeshift cronie
 ```
+
+```bash [yay]
+yay -S timeshift cronie
+```
+
+:::
+
+systemctl enable --now cronie
 
 For more information please refer to <https://github.com/teejee2008/timeshift>
 
@@ -248,9 +292,17 @@ For more information please refer to <https://github.com/teejee2008/timeshift>
 
 I recommend Déjà Dup to back up your personal files. Install it with
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S deja-dup
+```
+
+```bash [yay]
 yay -S deja-dup
 ```
+
+:::
 
 You may want to exclude certain folders (like Nextcloud or other cloud services, Games, .cache, .config and .local/share if you don't want to back up your program config files)
 
@@ -260,14 +312,36 @@ See <https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#List_of_install
 
 #### Backup
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -Qqe > pkglist.txt
+```
+
+```bash [yay]
 yay -Qqe > pkglist.txt
+```
+
+:::
+
+```bash
 systemctl list-unit-files --state=enabled > enabled-services.txt
 ```
 
 #### Restore
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S --needed - < pkglist.txt
+```
+
+```bash [yay]
 yay -S --needed - < pkglist.txt
+```
+
+:::
+
+```bash
 # Re-enable services with systemctl enable
 ```

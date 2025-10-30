@@ -9,16 +9,35 @@ your graphics driver & Vulkan should be already set-up correctly
 
 ### AMD
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S radeon-profile-git radeon-profile-daemon-git
+```
+
+```bash [yay]
 yay -S radeon-profile-git radeon-profile-daemon-git
+```
+
+:::
+
+```bash
 systemctl enable --now radeon-profile-daemon
 ```
 
 ### NVIDIA
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S nvidia-settings
+```
+
+```bash [yay]
 yay -S nvidia-settings
 ```
+
+:::
 
 ## Wine
 
@@ -26,52 +45,109 @@ yay -S nvidia-settings
 
 Recommended by [Lutris](https://github.com/lutris/docs/blob/master/WineDependencies.md#archendeavourosmanjaroother-arch-derivatives)
 
-```bash
-yay -S --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
+::: code-group
+
+```bash [paru]
+paru -S --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama libgcrypt lib32-libgcrypt libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 ```
 
-Other packages not listed by Lutris
+```bash [yay]
+yay -S --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama libgcrypt lib32-libgcrypt libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
+```
 
-```bash
+:::
+
+::: code-group
+
+```bash [paru]
+paru -S vkd3d lib32-vkd3d faudio lib32-faudio
+```
+
+```bash [yay]
 yay -S vkd3d lib32-vkd3d faudio lib32-faudio
 ```
+
+:::
 
 ### Custom Wine/Proton
 
 For custom Proton, I recommend GloriousEgroll's builds. For [Steam](https://github.com/GloriousEggroll/proton-ge-custom/) and [Lutris](https://github.com/GloriousEggroll/wine-ge-custom/).
 These can be installed using [ProtonUp-Qt](https://github.com/DavidoTek/ProtonUp-Qt)
-```bash
+::: code-group
+
+```bash [paru]
+paru -S protonup-qt
+```
+
+```bash [yay]
 yay -S protonup-qt
 ```
 
-For custom Wine, I recommend [Tk-Glitch](https://github.com/Frogging-Family/wine-tkg-git/) which can be downloaded from [here](https://nightly.link/Frogging-Family/wine-tkg-git/workflows/wine-arch/master/wine-tkg-build.zip) and installed with `unzip wine-tkg-build.zip && yay -U wine-tkg-*.pkg.tar.zst`
+:::
+
+For custom Wine, I recommend [Tk-Glitch](https://github.com/Frogging-Family/wine-tkg-git/) which can be downloaded from [here](https://nightly.link/Frogging-Family/wine-tkg-git/workflows/wine-arch/master/wine-tkg-build.zip) and installed with ::: code-group
+  
+```bash [paru]
+unzip wine-tkg-build.zip && paru -U wine-tkg-*.pkg.tar.zst
+```
+
+```bash [yay]
+unzip wine-tkg-build.zip && yay -U wine-tkg-*.pkg.tar.zst
+```
+
+:::
 
 ## Programs
 
 Install basic gaming tools
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S lutris steam gamemode lib32-gamemode
+```
+
+```bash [yay]
 yay -S lutris steam gamemode lib32-gamemode
 ```
+
+:::
 
 ## Custom kernel
 
 ::: warning
 If you are using NVIDIA and want to use a custom kernel you need to use `nvidia-dkms` since `nvidia` is just for the mainline `linux` kernel and `nvidia-lts` for `linux-lts`
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -Rdd nvidia
+paru -S nvidia-dkms
+```
+
+```bash [yay]
 yay -Rdd nvidia
 yay -S nvidia-dkms
 ```
+
+:::
 
 Alternatively you can use [nvidia-all](https://github.com/Frogging-Family/nvidia-all) to get the latest NVIDIA driver for all kernels
 :::
 
 ### Zen
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S linux-zen linux-zen-headers
+```
+
+```bash [yay]
 yay -S linux-zen linux-zen-headers
 ```
+
+:::
 
 ### Tk-Glitch
 

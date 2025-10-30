@@ -8,9 +8,11 @@
     "scripts": {
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
-        "serve": "vitepress serve docs"
+        "serve": "vitepress serve docs",
+        "check-links": "find docs -name \\*.md -print0 | xargs -0 -n1 markdown-link-check"
     },
     "devDependencies": {
+        "markdown-link-check": "^3.11.2",
         "vitepress": "^1.6.4",
         "vue": "^3.5.22"
     }

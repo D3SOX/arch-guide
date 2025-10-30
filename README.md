@@ -9,19 +9,19 @@ My installation instructions and guide for Arch Linux
 Install dependencies
 
 ```bash
-yarn
+pnpm install
 ```
 
 Run development server
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 Build for production
 
 ```bash
-yarn build
+pnpm build
 ```
 
 For more details, please head VitePress's [documentation](https://vitepress.vuejs.org/).

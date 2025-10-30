@@ -30,70 +30,177 @@ curl -L https://get.oh-my.fish | fish
 
 ## AUR Setup
 
-The Arch User Repository is a community-driven repository for Arch users. `yay` is a pacman wrapper that allows installing AUR packages
+The Arch User Repository is a community-driven repository for Arch users. `paru` is a popular AUR helper that allows installing AUR packages.
 
-```bash
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -rsi
-cd .. && rm -rf yay
-```
+::: code-group
 
-`paru` is a good alternative to `yay`. It's easy to use due to its similarity with yay's CLI.
-To install it, simply execute the following commands.
-
-```bash
+```bash [paru]
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -rsi
 cd .. && rm -rf paru
 ```
 
-In the following commands replace `yay` with `paru`.
+```bash [yay]
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -rsi
+cd .. && rm -rf yay
+```
+
+:::
+
+This guide shows commands for both `paru` and `yay` where applicable.
 
 ### Hold up
 
 ::: warning
 Be careful when using AUR packages. You might need to re-build them when the dependencies in the repositories get updated.  
 I recommend installing [rebuild-detector](https://github.com/maximbaz/rebuild-detector) to get notified when a package needs to be re-built.  
-```bash
+::: code-group
+
+```bash [paru]
+paru -S rebuild-detector
+```
+
+```bash [yay]
 yay -S rebuild-detector
 ```
-:::
+::::
 
 ### Cheat sheet
 
-(Unless explicitly mentioned, this also applies to `paru`)
+<div id="aur-cheat-sheet-paru" class="aur-cheat-sheet" data-helper="paru">
+
+- `paru` Update system
+- `paru xyz` Install xyz
+- `paru -Rns xyz` Uninstall xyz
+- `paru -Rdd xyz` Force remove xyz (should not be used)
+- `paru -c` Uninstall not explicitly installed optional dependencies
+- `paru -Si xyz` Show remote package
+- `paru -Qi xyz` Show local package
+- `paru -Qq` List installed packages
+- `paru -Qqe` List explicitly installed packages
+</div>
+
+<div id="aur-cheat-sheet-yay" class="aur-cheat-sheet" data-helper="yay">
 
 - `yay` Update system
 - `yay xyz` Install xyz
 - `yay -Rns xyz` Uninstall xyz
 - `yay -Rdd xyz` Force remove xyz (should not be used)
-- `yay -Yc` / `paru -c` Uninstall not explicitly installed optional dependencies
+- `yay -Yc` Uninstall not explicitly installed optional dependencies
 - `yay -Si xyz` Show remote package
 - `yay -Qi xyz` Show local package
 - `yay -Qq` List installed packages
 - `yay -Qqe` List explicitly installed packages
+</div>
 
 ## Graphical package manager
 
 📦 I recommend only to use `yay`/`paru` to update and install packages but (especially if you are a beginner) you may want a graphical package manager
 
-- Simple GTK: `yay -S gnome-packagekit`
-- Simple Qt: `yay -S apper`
-- Complex GTK: `yay -S pamac-aur` (Most beginner-friendly)
-- Complex Qt: `yay -S octopi`
+### Simple GTK
+
+::: code-group
+
+```bash [paru]
+paru -S gnome-packagekit
+```
+
+```bash [yay]
+yay -S gnome-packagekit
+```
+
+:::
+
+### Simple Qt
+
+::: code-group
+
+```bash [paru]
+paru -S apper
+```
+
+```bash [yay]
+yay -S apper
+```
+
+:::
+
+### Complex GTK (Most beginner-friendly)
+
+::: code-group
+
+```bash [paru]
+paru -S pamac-aur
+```
+
+```bash [yay]
+yay -S pamac-aur
+```
+
+:::
+
+### Complex Qt
+
+::: code-group
+
+```bash [paru]
+paru -S octopi
+```
+
+```bash [yay]
+yay -S octopi
+```
+
+:::
 
 🛒 If you want an even easier to use GUI, you can install a Software Center. They can't install AUR packages though.
 
+### GTK Software Center
+
+::: code-group
+
+```bash [paru]
+paru -S gnome-software gnome-software-packagekit-plugin
+```
+
+```bash [yay]
+yay -S gnome-software gnome-software-packagekit-plugin
+```
+
+:::
+
+### Qt Software Center
+
+::: code-group
+
+```bash [paru]
+paru -S discover packagekit-qt5
+```
+
+```bash [yay]
+yay -S discover packagekit-qt5
+```
+
+:::
 - GTK Software Center: `yay -S gnome-software`
 - Qt Software Center: `yay -S discover packagekit-qt6`
 
 ## Media Codecs
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi x265 x264 lame
+```
+
+```bash [yay]
 yay -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi x265 x264 lame
 ```
+
+:::
 
 ## Qt theme on GTK Desktop
 
@@ -101,9 +208,17 @@ If you use a GTK desktop and want Qt apps to use your GTK Theme you have 2 choic
 
 You need to install the Qt5 Style plugins for both
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S qt5-styleplugins
+```
+
+```bash [yay]
 yay -S qt5-styleplugins
 ```
+
+:::
 
 ### Convert GTK2 theme
 
@@ -117,18 +232,35 @@ echo "export QT_QPA_PLATFORMTHEME=gtk2" >> ~/.profile
 
 You can use Qt5Ct instead
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S qt5ct
+echo "export QT_QPA_PLATFORMTHEME=qt5ct" >> ~/.profile
+```
+
+```bash [yay]
 yay -S qt5ct
 echo "export QT_QPA_PLATFORMTHEME=qt5ct" >> ~/.profile
 ```
+
+:::
 
 ## If you want to read APFS Partitions
 
 💽 If you have a Hackintosh installation you can use this to access your files from it
 
-```bash
+::: code-group
+
+```bash [paru]
+paru -S linux-apfs-rw-dkms-git
+```
+
+```bash [yay]
 yay -S linux-apfs-rw-dkms-git
 ```
+
+:::
 
 ## Fonts
 
@@ -136,10 +268,17 @@ yay -S linux-apfs-rw-dkms-git
 
 🗛 Those are some essential font packages
 
-```bash
+:::: code-group
+
+```bash [paru]
+paru -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation libertinus-font
+```
+
+```bash [yay]
 yay -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation libertinus-font
 ```
 
+::::
 If you want you can install all available fonts which takes about 1 GB of space
 
 ```bash
