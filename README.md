@@ -9,19 +9,19 @@ My installation instructions and guide for Arch Linux
 Install dependencies
 
 ```bash
-pnpm install
+bun install
 ```
 
 Run development server
 
 ```bash
-pnpm dev
+bun run dev
 ```
 
 Build for production
 
 ```bash
-pnpm build
+bun run build
 ```
 
 For more details, please head VitePress's [documentation](https://vitepress.vuejs.org/).
