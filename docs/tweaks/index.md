@@ -55,20 +55,6 @@ yay -S libsndio-61-compat
 
 :::
 
-### Spotify local files
-
-::: code-group
-
-```bash [paru]
-paru -S ffmpeg-compat-57 ffmpeg
-```
-
-```bash [yay]
-yay -S ffmpeg-compat-57 ffmpeg
-```
-
-:::
-
 ## Fix on shutdown "Failed to start user manager service for user 174" (sddm)
 
 ```bash
