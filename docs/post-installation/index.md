@@ -199,11 +199,11 @@ echo "export QT_QPA_PLATFORMTHEME=qt6ct" >> ~/.profile
 ::: code-group
 
 ```bash [paru]
-paru -S linux-apfs-rw-dkms-git
+paru -S linux-apfs-rw-dkms
 ```
 
 ```bash [yay]
-yay -S linux-apfs-rw-dkms-git
+yay -S linux-apfs-rw-dkms
 ```
 
 :::
