@@ -135,7 +135,6 @@ yay -S nvidia-dkms
 ::::
 
 Alternatively you can use [nvidia-all](https://github.com/Frogging-Family/nvidia-all) to get the latest NVIDIA driver for all kernels
-::::
 
 ### Zen
 
