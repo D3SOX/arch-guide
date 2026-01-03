@@ -20,14 +20,6 @@ localectl set-x11-keymap yourkeymap
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-## Oh my Fish
-
-🤖 The Fishshell Framework
-
-```bash
-curl -L https://get.oh-my.fish | fish
-```
-
 ## AUR Setup
 
 The Arch User Repository is a community-driven repository for Arch users. `paru` is a popular AUR helper that allows installing AUR packages.
