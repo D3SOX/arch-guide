@@ -115,7 +115,7 @@ If you experience any problems later on consult https://wiki.archlinux.org/title
 Only install these packages if you are using an AMD GPU
 
 ```bash
-pacman -S libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver vulkan-radeon lib32-vulkan-radeon
+pacman -S libva-mesa-driver lib32-libva-mesa-driver vulkan-radeon lib32-vulkan-radeon
 ```
 
 ### Intel Utils
@@ -234,7 +234,7 @@ pacman -S pavucontrol
 
 🔵 Add some packages needed for proper bluetooth support
 
-```bash 
+```bash
 pacman -S bluez bluez-utils
 systemctl enable bluetooth
 # only if you installed PulseAudio in the previous step:
