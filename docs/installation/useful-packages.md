@@ -1,267 +1,138 @@
-# Useful packages
+# Drivers and useful packages
 
-## General packages
+Install the graphics and audio packages needed by your desktop before continuing to the bootloader page. The remaining sections are optional. Commands run as root inside the chroot.
+
+## Graphics drivers
+
+Identify your hardware:
 
 ```bash
-pacman -S linux-headers dkms
-pacman -S jshon expac git wget acpid avahi net-tools xdg-user-dirs
-systemctl enable acpid avahi-daemon systemd-timesyncd
+lspci -k | grep -A 3 -E '(VGA|3D|Display)'
 ```
 
-If system is running on an SSD
+Install drivers for each GPU you use, including both GPUs on a hybrid laptop. The commands below target current hardware; consult the linked wiki pages for older generations.
+
+### AMD
+
+```bash
+pacman -S mesa vulkan-radeon
+```
+
+For Steam and other 32-bit graphics applications, enable multilib and add:
+
+```bash
+pacman -S lib32-mesa lib32-vulkan-radeon
+```
+
+VA-API support is included in Mesa. See [AMDGPU](https://wiki.archlinux.org/title/AMDGPU) for older GPUs and hardware video acceleration.
+
+### Intel
+
+```bash
+pacman -S mesa vulkan-intel
+```
+
+For 32-bit graphics applications:
+
+```bash
+pacman -S lib32-mesa lib32-vulkan-intel
+```
+
+Video acceleration packages depend on the GPU generation; see [Intel graphics](https://wiki.archlinux.org/title/Intel_graphics). The legacy `xf86-video-intel` Xorg driver is not a default requirement.
+
+### NVIDIA
+
+Select the driver by GPU generation. The current open kernel modules support **Turing and newer**, not every NVIDIA card. For the `linux` kernel installed by this guide:
+
+```bash
+pacman -S nvidia-open nvidia-utils
+```
+
+For Steam, add `lib32-nvidia-utils` after enabling multilib. Use `nvidia-open-lts` with `linux-lts`, or `nvidia-open-dkms` plus matching kernel headers for other kernels.
+
+Maxwell, Pascal and Volta need the legacy `nvidia-580xx-dkms` AUR branch and matching `nvidia-580xx-utils` (plus `lib32-nvidia-580xx-utils` for 32-bit applications). These require [AUR setup](/post-installation/#aur-packages) as a regular user and headers for each installed kernel. For a fresh install on this hardware, complete the base system and boot into a console first; postpone enabling a graphical login until the driver is installed. If you already enabled a display manager, disable that service before rebooting. Older cards need other legacy branches or Nouveau. Do not mix legacy and current NVIDIA userspace libraries.
+
+Read [NVIDIA](https://wiki.archlinux.org/title/NVIDIA) for the hardware support table, hybrid graphics and power-management caveats. Arch's [driver transition notice](https://archlinux.org/news/nvidia-590-driver-drops-pascal-support-main-packages-switch-to-open-kernel-modules/) explains the package change.
+
+### Initramfs and virtual machines
+
+Keep the default `kms` hook for in-tree drivers. Only add explicit modules when your hardware requires them, preserving any existing `MODULES` entries; see [early KMS](https://wiki.archlinux.org/title/Kernel_mode_setting#Early_KMS_start). The next page regenerates the initramfs after configuration.
+
+For a VM, install guest integration appropriate to its hypervisor and virtual GPU: [VirtualBox](https://wiki.archlinux.org/title/VirtualBox/Install_Arch_Linux_as_a_guest), [VMware](https://wiki.archlinux.org/title/VMware/Install_Arch_Linux_as_a_guest), or [QEMU](https://wiki.archlinux.org/title/QEMU). The VMware Xorg driver is not a universal VM driver.
+
+## Audio
+
+Use PipeWire with WirePlumber:
+
+```bash
+pacman -S pipewire pipewire-alsa pipewire-pulse wireplumber alsa-utils
+```
+
+The user services start with the desktop session; do not enable them as system services. Install `pipewire-jack` only if you need JACK compatibility. Plasma includes volume controls; `pavucontrol` or `pavucontrol-qt` are optional alternatives. See [PipeWire](https://wiki.archlinux.org/title/PipeWire).
+
+## Bluetooth
+
+```bash
+pacman -S bluez bluez-utils
+systemctl enable bluetooth.service
+```
+
+Plasma includes Bluedevil; other desktops can use their own Bluetooth settings or `blueman`. PipeWire does not need `pulseaudio-bluetooth`.
+
+## Printing and scanning
+
+Start with driverless printing for supported IPP printers:
+
+```bash
+pacman -S cups
+systemctl enable cups.service
+```
+
+For network printer discovery, install `avahi` and enable `avahi-daemon.service`. Use Plasma's `print-manager` or `system-config-printer` to add printers. Install `gutenprint`, `hplip` or other device-specific drivers only if your model needs them. See [CUPS](https://wiki.archlinux.org/title/CUPS).
+
+For supported network scanners, install `sane-airscan` with `skanlite` (Qt) or `simple-scan` (GTK). Supported USB IPP devices may need `ipp-usb`. Local scanning does not require enabling `saned.socket`; see [SANE](https://wiki.archlinux.org/title/SANE).
+
+## SSD maintenance
+
+For supported SSDs:
 
 ```bash
 systemctl enable fstrim.timer
 ```
 
-## Printer support
+Encrypted systems also need a deliberate [discard configuration](/encryption/#header-backup-and-ssd-discard). The timer alone cannot trim through a LUKS mapping that blocks discard.
 
-🖨️ Add some packages needed for printing and scanning
+## File tools and network shares
 
-### General packages
-
-```bash
-pacman -S system-config-printer foomatic-db foomatic-db-engine gutenprint gsfonts cups cups-pdf cups-filters sane
-systemctl enable cups.service saned.socket
-```
-
-### Qt Scan Application
-
-Use this if you use KDE Plasma or LXQt
+Install what you use, for example:
 
 ```bash
-pacman -S skanlite
+pacman -S 7zip unzip unrar rsync xdg-user-dirs
 ```
 
-### GTK Scan Application
+Use `exfatprogs` for native exFAT filesystem tools. Linux includes the `ntfs3` driver; `ntfs-3g` remains an alternative. Network shares may need `nfs-utils` or `cifs-utils`, and GTK file managers commonly use `gvfs` integrations.
 
-Use this if you use another desktop environment
+NetworkManager is already installed and enabled. Add VPN plugins only for the VPN you use; do not enable another network manager for the same interface.
 
-```bash
-pacman -S simple-scan
-```
+## Android tools
 
-### UI for HP Printers
-
-🖨 Install this if you have an HP Printer
-
-```bash
-pacman -S hplip
-```
-
-## Input Driver
-
-These are some packages needed for certain input devices to function properly. It does no harm to install them, even if you wouldn't need them
-
-```bash
-pacman -S xf86-input-synaptics xf86-input-libinput xf86-input-evdev
-```
-
-When installing inside a virtual machine:
-
-```bash
-pacman -S xf86-input-vmmouse
-```
-
-## Graphics Driver
-
-### Mesa
-
-This is useful for all GPUs
-
-```bash
-pacman -S mesa lib32-mesa
-```
-
-### Vulkan
-
-This is useful for all GPUs
-
-```bash
-pacman -S vulkan-icd-loader lib32-vulkan-icd-loader
-```
-
-### Open Source drivers
-
-Only install this if you use an AMD or Intel GPU or want to use the open source NVIDIA driver (Nouveau, not developed by NVIDIA)
-
-```bash
-pacman -S <driver>
-```
-
-- `xf86-video-amdgpu` is for newer AMD GPUs
-- `xf86-video-nouveau` is the open source NVIDIA driver
-- `xf86-video-intel` is the open source Intel driver (You probably want to leave this out, and it will use the modesetting driver. For more information refer to [the wiki](https://wiki.archlinux.org/index.php/Intel_graphics#Installation))
-- `xf86-video-ati` is for older AMD GPUs
-- `xf86-video-vmware` for VirtualBox, VMWare, QEMU
-- `xf86-video-fbdev` for Hyper-V
-- If you don't know it you can install all, but it could happen that the internal graphics card is used if you install the driver for it
-
-### Nvidia proprietary driver
-
-Only install these packages if you are using an NVIDIA GPU
-
-```bash
-pacman -S nvidia nvidia-utils lib32-nvidia-utils libvdpau lib32-libvdpau
-```
-
-::: danger Warning
-NVIDIA's Linux drivers have a bad reputation when it comes to stability and compatibility with all systems.
-If you experience any problems later on consult https://wiki.archlinux.org/title/NVIDIA for troubleshooting.
-:::
-
-### AMD Utils
-
-Only install these packages if you are using an AMD GPU
-
-```bash
-pacman -S libva-mesa-driver lib32-libva-mesa-driver vulkan-radeon lib32-vulkan-radeon
-```
-
-### Intel Utils
-
-Only install this package if you are using an Intel GPU
-
-```bash
-pacman -S vulkan-intel
-```
-
-### Early KMS start
-
-Some systems require early KMS start to work properly. Read the [Arch Wiki entry](https://wiki.archlinux.org/title/Kernel_mode_setting#Early_KMS_start) about it
-
-```bash
-nano /etc/mkinitcpio.conf
-```
-
-Change `MODULES=()` to
-
-- `MODULES=(amdgpu)` if you installed `xf86-video-amdgpu`
-- `MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)` if you installed `nvidia`
-- `MODULES=(i915)` if you are using Intel graphics
-- for any other driver you can skip this step
-
-Remove `kms` inside `HOOKS=()` if you installed `nvidia`
-
-and run
-
-```bash
-mkinitcpio -P
-```
-
-## Networking
-
-🖧 Those are essential networking tools
-
-```bash
-pacman -S networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc
-systemctl enable NetworkManager
-```
-
-### Wi-Fi connection
-
-📶 Those are essential tools if you connect to the internet via Wi-Fi
-
-```bash
-pacman -S wireless_tools wpa_supplicant ifplugd dialog
-```
-
-## Some archive and file system utils
-
-🗄️ Important tools for archives and file systems
-
-```bash
-pacman -S p7zip unrar unarchiver unzip unace xz rsync
-pacman -S nfs-utils cifs-utils ntfs-3g exfat-utils gvfs udisks2
-```
-
-## Sound
-
-🔊 Some essential packages for sound
-
-### PulseAudio
-
-Default audio server for Linux
-
-```bash
-pacman -S alsa-utils pulseaudio-alsa pulseaudio-equalizer
-```
-
-See <https://wiki.archlinux.org/title/PulseAudio>
-
-#### Fix muting some media players
-
-🔇 PulseAudio by default might mute media applications when entering a voice call. To disable this:
-
-```bash
-mkdir -p /etc/pulse/default.pa.d
-nano /etc/pulse/default.pa.d/no-cork.pa
-```
-
-Put this in the file and save it:
-
-```ini
-unload-module module-role-cork
-```
-
-Source: <https://wiki.archlinux.org/index.php/PulseAudio#Disable_muting_media_on_entering_voice_call_(module-role-cork)>
-
-### PipeWire
-
-Alternatively use can PipeWire:
-
-```bash
-pacman -S alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber
-```
-
-See <https://wiki.archlinux.org/title/PipeWire>
-
-### Control app
-
-For Qt based desktops (e.g. KDE Plasma or LXQt)
-
-```bash
-pacman -S pavucontrol-qt
-```
-
-For GTK based desktop (another desktop environment)
-
-```bash
-pacman -S pavucontrol
-```
-
-## Bluetooth support
-
-🔵 Add some packages needed for proper bluetooth support
-
-```bash
-pacman -S bluez bluez-utils
-systemctl enable bluetooth
-# only if you installed PulseAudio in the previous step:
-pacman -S pulseaudio-bluetooth
-```
-
-## ADB
-
-If you want the Android Debug Bridge working with your user:
+For ADB access as your regular user:
 
 ```bash
 pacman -S android-tools android-udev
 usermod -aG adbusers yourusername
 ```
 
-## Other shells
+## Alternative shells
 
-🐚 You may want to use another shell than bash
-
-### zsh (Z Shell)
+For Zsh:
 
 ```bash
 pacman -S zsh zsh-completions
 chsh -s /usr/bin/zsh yourusername
 ```
 
-### fish (Friendly interactive shell)
+Or for Fish:
 
 ```bash
 pacman -S fish

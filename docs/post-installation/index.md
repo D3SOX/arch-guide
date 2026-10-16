@@ -1,325 +1,148 @@
-# Post-Installation
+# Post-installation
 
-## Set X11 Keymap
+Run these commands after reboot as your regular user. Commands needing administrative privileges use `sudo`.
 
-⌨️ It's recommended to set this to your keymap. Some Display Manager and Desktop Environments use this (replace `yourkeymap` with your keymap e.g. `de`)
+## Network and keyboard
 
-```bash
-localectl set-x11-keymap yourkeymap
-```
+Connect Wi-Fi through your desktop's network settings or `nmtui`. The installed system uses NetworkManager; the ISO's `iwctl` setup is separate.
 
-## Wi-Fi
-
-📶 You can use `nmtui` `wifi-menu` or your graphical network manager from your desktop environment to configure your network profile
-
-## Oh My Zsh
-
-🤖 A delightful & open source framework for Zsh
+Set your keyboard layout in the desktop settings. For X11 sessions and display managers that use the system X11 layout, this example sets German:
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sudo localectl set-x11-keymap de
 ```
 
-## AUR Setup
+This does not replace `/etc/vconsole.conf`, which controls the console and the encrypted-root unlock prompt. If you change that file on an encrypted system, regenerate the initramfs with `sudo mkinitcpio -P`.
 
-The Arch User Repository is a community-driven repository for Arch users. `paru` is a popular AUR helper that allows installing AUR packages.
+## AUR packages
+
+Use `sudo pacman -S package` for official repository packages. The [Arch User Repository](https://wiki.archlinux.org/title/Arch_User_Repository) contains user-maintained build instructions, not officially supported binary packages. Review the `PKGBUILD`, install scripts and source URLs before building, including when a helper offers to show changes.
+
+Install build prerequisites:
+
+```bash
+sudo pacman -S --needed base-devel git
+```
+
+Choose one optional helper. Run `makepkg` as your regular user, never root. After cloning, read the build files before running the final command:
 
 ::: code-group
 
 ```bash [paru]
 git clone https://aur.archlinux.org/paru.git
 cd paru
-makepkg -rsi
-cd .. && rm -rf paru
+less PKGBUILD
+makepkg -si
+cd ..
 ```
 
 ```bash [yay]
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -rsi
-cd .. && rm -rf yay
+less PKGBUILD
+makepkg -si
+cd ..
 ```
 
 :::
 
-This guide shows commands for both `paru` and `yay` where applicable.
+Examples below use `paru`; substitute `yay` if that is your helper.
 
-### Hold up
+| Task | Command |
+| --- | --- |
+| Upgrade repository and AUR packages | `paru -Syu` |
+| Install an AUR package | `paru -S package` |
+| Inspect installed package information | `pacman -Qi package` |
+| Remove a package and unneeded dependencies | `sudo pacman -Rns package` |
+| List foreign packages, including AUR packages | `pacman -Qm` |
 
-::: warning
-Be careful when using AUR packages. You might need to re-build them when the dependencies in the repositories get updated.  
-I recommend installing [rebuild-detector](https://github.com/maximbaz/rebuild-detector) to get notified when a package needs to be re-built.  
-::: code-group
+Review removal lists before confirming. Do not bypass dependency checks to force a package replacement.
 
-```bash [paru]
-paru -S rebuild-detector
+AUR packages may need rebuilding after library upgrades. The official `rebuild-detector` package helps find affected packages:
+
+```bash
+sudo pacman -S rebuild-detector
 ```
 
-```bash [yay]
-yay -S rebuild-detector
-```
-::::
+## Software centers and Flatpak
 
-### Cheat sheet
+For Plasma:
 
-<div id="aur-cheat-sheet-paru" class="aur-cheat-sheet" data-helper="paru">
-
-- `paru` Update system
-- `paru xyz` Install xyz
-- `paru -Rns xyz` Uninstall xyz
-- `paru -Rdd xyz` Force remove xyz (should not be used)
-- `paru -c` Uninstall not explicitly installed optional dependencies
-- `paru -Si xyz` Show remote package
-- `paru -Qi xyz` Show local package
-- `paru -Qq` List installed packages
-- `paru -Qqe` List explicitly installed packages
-</div>
-
-<div id="aur-cheat-sheet-yay" class="aur-cheat-sheet" data-helper="yay">
-
-- `yay` Update system
-- `yay xyz` Install xyz
-- `yay -Rns xyz` Uninstall xyz
-- `yay -Rdd xyz` Force remove xyz (should not be used)
-- `yay -Yc` Uninstall not explicitly installed optional dependencies
-- `yay -Si xyz` Show remote package
-- `yay -Qi xyz` Show local package
-- `yay -Qq` List installed packages
-- `yay -Qqe` List explicitly installed packages
-</div>
-
-## Graphical package manager
-
-📦 I recommend only to use `yay`/`paru` to update and install packages but (especially if you are a beginner) you may want a software center or a graphical package manager
-
-🛒 If you want an even easier to use GUI, you can install a Software Center. They can only manage Flatpaks and Firmware updates and not install AUR packages though.
-
-### GTK Software Center (Recommended for GNOME and other GTK DEs)
-
-::: code-group
-
-```bash [paru]
-paru -S gnome-software fwupd
+```bash
+sudo pacman -S discover flatpak fwupd
 ```
 
-```bash [yay]
-yay -S gnome-software fwupd
+For GNOME:
+
+```bash
+sudo pacman -S gnome-software flatpak fwupd
 ```
 
-:::
+Configure remotes using the [Flatpak setup instructions](https://flathub.org/en/setup/Arch). These software centers can manage Flatpaks and supported firmware updates. Repository package support depends on installed backends such as PackageKit; they do not replace AUR review or Arch's manual upgrade interventions. This guide uses pacman for repository packages.
 
-I would recommend you to go for bazaar instead. First [Install Flatpak](https://flathub.org/en/setup/Arch) and then install Bazaar with:
+[Bazaar](https://flathub.org/apps/io.github.kolunmi.Bazaar) is another Flatpak-focused option. After configuring Flathub:
 
 ```bash
 flatpak install flathub io.github.kolunmi.Bazaar
-````
-
-### Qt Software Center (Recommended for Plasma or other Qt DEs)
-
-::: code-group
-
-```bash [paru]
-paru -S discover flatpak fwupd
 ```
 
-```bash [yay]
-yay -S discover flatpak fwupd
+## Media codecs
+
+For applications using GStreamer:
+
+```bash
+sudo pacman -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
 ```
 
-:::
-
-::: warning Warning
-You can install packagekit-qt6 to get support for Arch packages in Discover but this is strongly discouraged because it is not very stable. It is recommended to rely on tested CLI tools.
-:::
-
-### Complex GTK (Most beginner-friendly)
-
-::: code-group
-
-```bash [paru]
-paru -S pamac-aur
-```
-
-```bash [yay]
-yay -S pamac-aur
-```
-
-:::
-
-### Complex Qt
-
-::: code-group
-
-```bash [paru]
-paru -S octopi
-```
-
-```bash [yay]
-yay -S octopi
-```
-
-:::
-
-## Media Codecs
-
-::: code-group
-
-```bash [paru]
-paru -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi x265 x264 lame
-```
-
-```bash [yay]
-yay -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gstreamer-vaapi x265 x264 lame
-```
-
-:::
-
-## Qt theme on GTK Desktop
-
-You can use Qt6Ct to set the style of Qt applications
-
-::: code-group
-
-```bash [paru]
-paru -S qt6ct
-echo "export QT_QPA_PLATFORMTHEME=qt6ct" >> ~/.profile
-```
-
-```bash [yay]
-yay -S qt6ct
-echo "export QT_QPA_PLATFORMTHEME=qt6ct" >> ~/.profile
-```
-
-:::
-
-## If you want to read APFS Partitions
-
-💽 If you have a Hackintosh installation you can use this to access your files from it
-
-::: code-group
-
-```bash [paru]
-paru -S linux-apfs-rw-dkms
-```
-
-```bash [yay]
-yay -S linux-apfs-rw-dkms
-```
-
-:::
+Install `gst-plugin-va` if you need GStreamer VA-API acceleration and have a supported video driver. Other players may use their own codec stack; see [GStreamer](https://wiki.archlinux.org/title/GStreamer).
 
 ## Fonts
 
-### General Fonts
-
-🗛 Those are some essential font packages
-
-:::: code-group
-
-```bash [paru]
-paru -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation libertinus-font
-```
-
-```bash [yay]
-yay -S adobe-source-sans-pro-fonts ttf-dejavu ttf-opensans noto-fonts freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation libertinus-font
-```
-
-::::
-If you want you can install all available fonts which takes about 1 GB of space
-
-:::: code-group
-
-```bash [paru]
-paru -S all-repository-fonts
-```
-
-```bash [yay]
-yay -S all-repository-fonts
-```
-
-::::
-
-### Windows Fonts
-
-🗛 If you want the Windows/Microsoft fonts (f.e. for Office Suites and required by certain games under Wine)
-
-#### With an existing Windows Installation / ISO
-
-When you have an existing Windows Installation / ISO you can use the following package script
+A small general-purpose selection is:
 
 ```bash
-git clone https://aur.archlinux.org/ttf-ms-win11.git
-cd ttf-ms-win11
+sudo pacman -S noto-fonts noto-fonts-emoji ttf-liberation
 ```
 
-Read `PKGBUILD` and copy all Windows files into the directory and then run `makepkg -rsi --skipchecksums`
+Add `noto-fonts-cjk` for Chinese, Japanese and Korean coverage. Choose additional fonts for the languages and applications you use instead of installing every font package. See [Fonts](https://wiki.archlinux.org/title/Fonts).
 
-#### Without an existing Windows Installation / ISO
+### Windows and macOS fonts
 
-:::: tip
+If you need Microsoft fonts, the AUR's `ttf-ms-win11` build instructions describe the required files from a Windows installation or ISO. Review the current `PKGBUILD` and its licensing requirements, supply the matching sources, and build normally with `makepkg -si`. Resolve source or checksum mismatches instead of disabling integrity checks.
 
-There's a package that automatically downloads and extracts the fonts
+Apple's San Francisco fonts are optional and have their own licensing terms. Check the current AUR build instructions for `otf-san-francisco` and `otf-san-francisco-mono` if you need them.
 
-:::: code-group
+## Qt applications on GTK desktops
 
-```bash [paru]
-paru -S ttf-ms-win11-auto
+`qt6ct` can configure Qt 6 applications outside Plasma. Follow [Qt's configuration guidance](https://wiki.archlinux.org/title/Qt#Configuration) for setting `QT_QPA_PLATFORMTHEME=qt6ct` in your session's environment. Do not set it globally on Plasma, which supplies its own integration. A Wayland session does not necessarily read `~/.profile`.
+
+## APFS access
+
+The official repository contains `linux-apfs-rw-dkms`. Install the headers for your kernel alongside it, for example `linux-headers` for `linux`:
+
+```bash
+sudo pacman -S linux-headers linux-apfs-rw-dkms
 ```
 
-```bash [yay]
-yay -S ttf-ms-win11-auto
-```
-
-::::
-
-### macOS Fonts
-
-🗚 If you want the San Francisco Font by Apple
-
-:::: code-group
-
-```bash [paru]
-paru -S otf-san-francisco otf-san-francisco-mono
-```
-
-```bash [yay]
-yay -S otf-san-francisco otf-san-francisco-mono
-```
-
-::::
+The [upstream driver](https://github.com/linux-apfs/linux-apfs-rw) mounts read-only by default. Write support is experimental and can corrupt data; encrypted APFS volumes are unsupported. Keep valuable data backed up and use read-only access.
 
 ## Nano syntax highlighting
 
-📃 This package provides syntax highlighting enhancements to the nano text editor
+Optional additional syntax definitions are available with:
 
-:::: code-group
-
-```bash [paru]
-paru -S nano-syntax-highlighting
+```bash
+sudo pacman -S nano-syntax-highlighting
 ```
 
-```bash [yay]
-yay -S nano-syntax-highlighting
+Follow the package's configuration instructions to enable the definitions you need.
+
+## Package cache and regular updates
+
+Use the official cache-cleaning timer, which retains three versions of cached packages by default:
+
+```bash
+sudo pacman -S pacman-contrib
+sudo systemctl enable --now paccache.timer
 ```
 
-::::
-
-## Auto clean package cache
-
-⚠️The cache can get huge over time so it is strongly encouraged to install a hook like this
-
-🗑️ This install a configurable hook to cleanup the pacman package cache
-
-:::: code-group
-
-```bash [paru]
-paru -S paccache-hook
-sudo nano /etc/paccache-hook.conf # Configure to your liking
-```
-
-```bash [yay]
-yay -S paccache-hook
-sudo nano /etc/paccache-hook.conf # Configure to your liking
-```
-
-::::
+Keeping recent packages helps with recovery. Read [system maintenance and backups](/tweaks/) before your next upgrade.

@@ -1,39 +1,28 @@
-# Setup users
+# Set up users
 
-## Set root password
-
-🔑 Use a strong and complicated password
+Set a root password for recovery:
 
 ```bash
 passwd
 ```
 
-## Add your user
-
-🧑 This will be your user you'll use to log in. For group reference see <https://wiki.archlinux.org/index.php/Users_and_groups#Group_list>
+Create your regular account, replacing `yourusername`:
 
 ```bash
-useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/bash yourusername
+useradd -m -G wheel -s /bin/bash yourusername
 passwd yourusername
 ```
 
-🎰 If you want to force your user to change password after first login:
+Desktop sessions receive device access through logind. Do not add broad device-access groups such as `input`, `disk` or `video` by default. See [Users and groups](https://wiki.archlinux.org/title/Users_and_groups).
+
+Give the wheel group administrative access using the validated sudo editor:
 
 ```bash
-chage -d 0 yourusername
-```
-
-## Enable sudo
-
-🧐 This will give your user administrative privileges
-
-```bash
-pacman -S sudo
 EDITOR=nano visudo
 ```
 
-💥 Uncomment (remove the # in front of) the following lines
+Uncomment this rule:
 
-```
-%wheel ALL=(ALL) ALL
+```text
+%wheel ALL=(ALL:ALL) ALL
 ```

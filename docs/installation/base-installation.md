@@ -1,41 +1,33 @@
 # Base installation
 
-## Rank the mirrors before for faster downloads
+## Mirrors
 
-📊 This will rank the mirrorlist. You may replace United States with your country
+Optionally rank nearby HTTPS mirrors. Replace Germany with your country:
 
 ```bash
-reflector -c 'United States' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
-pacman -Syy
+reflector --country Germany --age 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
-## Start the installation
+## Install the base system
 
-⏳ This will install the system and may take a while
-
-::: warning
-⚠️ To ensure system stability append the microcode package for your CPU to the following command
-- `amd-ucode` for AMD CPUs
-- `intel-ucode` for Intel CPUs
-- See <https://wiki.archlinux.org/index.php/Microcode>
-:::
+Run this from the live ISO. Append `amd-ucode` for an AMD CPU or `intel-ucode` for an Intel CPU. For the encrypted layout, also append **`lvm2`**; `cryptsetup` is installed as a dependency of the base system.
 
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware sysfsutils usbutils e2fsprogs inetutils netctl nano less which man-db man-pages
+pacstrap -K /mnt base linux linux-firmware networkmanager nano sudo man-db man-pages pciutils less
 ```
 
-### Create filesystem table
+The default `microcode` initramfs hook includes installed CPU microcode. See [Microcode](https://wiki.archlinux.org/title/Microcode).
 
-This will create the file system table which contains all the partitions and mountpoints
+Kernel headers and DKMS are only needed for external kernel modules. Install headers matching each kernel when you need them.
 
-```bash
-genfstab -U /mnt >> /mnt/etc/fstab
-```
+## Generate fstab and enter the system
 
-### Change root
-
-After you entered this command, you are basically in the installed system
+For this fresh installation, write the filesystem table and inspect it. Re-running this command replaces the file, so preserve any manual edits first:
 
 ```bash
+genfstab -U /mnt > /mnt/etc/fstab
+cat /mnt/etc/fstab
 arch-chroot /mnt
 ```
+
+The remaining installation commands run as root inside this chroot until the reboot page tells you to exit.

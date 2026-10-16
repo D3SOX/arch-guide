@@ -1,0 +1,8 @@
+{
+    "ignorePatterns": [
+        { "pattern": "^(?!https?://)" }
+    ],
+    "timeout": "20s",
+    "retryOn429": true,
+    "retryCount": 2
+}

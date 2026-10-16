@@ -1,124 +1,63 @@
-# Partitioning & Formatting
+# Partitioning and formatting
 
-::: tip
-In the following X and Y are placeholders. Replace them with your corresponding device and partition number. "sd" could also be different if you don't connect your hard drive via SCSI/SATA
+For encryption, follow the [encryption page](/encryption/) instead of this page and the mounting page. It returns you to base installation.
+
+## Identify the disk
+
+```bash
+lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS,MODEL
+```
+
+The examples use `/dev/nvme0n1`, with partitions such as `/dev/nvme0n1p1`. SATA disks commonly use `/dev/sda` and `/dev/sda1`. Substitute your actual devices throughout.
+
+::: danger Data loss
+Partitioning and formatting can destroy existing data. Check the disk model, size and existing partitions before writing changes. Only format partitions intended for this installation.
 :::
 
-## Partitioning
-
-::: tip
-If you want to do disk encryption, go to the [encryption page](/encryption/). It will guide you back to the main installation when needed.
-:::
-
-::: tip
-Also see [this awesome video](https://youtu.be/8-8hFPjM46M) about partitioning by EF - Linux Made Simple
-:::
-
-### List partition table
-
-To get an overview you can list your partition table to find out the device you want to use
+Use the interactive terminal partition editor:
 
 ```bash
-fdisk -l
+cfdisk /dev/nvme0n1
 ```
 
-### Start partitioning tool
+## UEFI with GPT
 
-▶️ Text-based
+For a new disk, create a GPT partition table and this layout:
+
+| Example partition | Size | Type | Mount point |
+| --- | --- | --- | --- |
+| `/dev/nvme0n1p1` | 1 GiB | EFI System | `/boot` |
+| `/dev/nvme0n1p2` | Remaining space | Linux filesystem | `/` |
+
+Both bootloaders in this guide use the ESP at `/boot`, so it holds the kernels and initramfs images too. If reusing an existing ESP, check its free space and **do not format it**. An undersized shared ESP needs a different layout; see [EFI system partition](https://wiki.archlinux.org/title/EFI_system_partition).
+
+For a new ESP only:
 
 ```bash
-fdisk /dev/sdX
+mkfs.fat -F32 -n EFI /dev/nvme0n1p1
 ```
 
-▶️ UEFI only text-based
+Format the new root partition:
 
 ```bash
-gdisk /dev/sdX
+mkfs.ext4 -L ROOT /dev/nvme0n1p2
 ```
 
-▶️ Graphical (Recommended for beginners)
+## BIOS
+
+Use GRUB. On a DOS/MBR partition table, create a Linux root partition; there is no ESP. On GPT, also create a 1 MiB **BIOS boot** partition (gdisk type `ef02`), leaving it unformatted and unmounted. Format only the Linux root partition with ext4, substituting its actual device in the command above.
+
+See [GRUB installation](https://wiki.archlinux.org/title/GRUB#Installation) for firmware-specific requirements.
+
+## Optional home and swap partitions
+
+A separate `/home` partition is optional. If creating one, format it with `mkfs.ext4` and mount it after root. Do not format an existing home filesystem you intend to keep.
+
+Swap size depends on workload and whether you need hibernation. You can start without disk swap and configure [zram](/tweaks/#memory-and-swap) later. Zram cannot hold a hibernation image. For hibernation, plan disk-backed swap and [resume configuration](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation) before choosing sizes.
+
+If you created a swap partition, replace the example device below with that partition:
 
 ```bash
-cfdisk /dev/sdX
-```
-
-▶️ UEFI only Graphical (Recommended for beginners)
-
-```bash
-cgdisk /dev/sdX
-```
-
-### Create partitions
-
-#### Decide partition table type
-
-- BIOS: You can use both but this guide uses DOS
-- UEFI: You need to use GPT
-
-#### GPT (UEFI)
-
-| Needed | Partition | Partition type       | Mount point   |
-|--------|-----------|----------------------|---------------|
-| ✔️      | /dev/sdXY | EFI system partition | /mnt/boot/efi |
-| ❌      | /dev/sdXY | Linux swap           | -             |
-| ✔️      | /dev/sdXY | Linux                | /mnt          |
-| ❌      | /dev/sdXY | Linux                | /mnt/home     |
-
-#### DOS (BIOS)
-
-| Needed | Partition | Partition type | Mount point | Flags    |
-|--------|-----------|----------------|-------------|----------|
-| ❌      | /dev/sdXY | Linux swap     | -           | -        |
-| ✔️      | /dev/sdXY | Linux          | /mnt        | Bootable |
-| ❌      | /dev/sdXY | Linux          | /mnt/home   | -        |
-
-#### GPT (BIOS)
-
-### Size recommendations
-
-#### EFI system
-
-- At least: 150MB
-- Recommended: 300MB
-
-#### Swap
-
-Taken from <https://docs.voidlinux.org/installation/live-images/partitions.html>
-
-| System RAM | Recommended swap space | Swap space if using hibernation |
-|------------|------------------------|---------------------------------|
-| < 2GB      | 2x the amount of RAM   | 3x the amount of RAM            |
-| 2-8GB      | Equal to amount of RAM | 2x the amount of RAM            |
-| 8-64GB     | At least 4GB           | 1.5x the amount of RAM          |
-| 64GB       | At least 4GB           | Hibernation not recommended     |
-
-## Format partitions
-
-### EFI system partition
-
-```bash
-mkfs.fat -F32 -n EFI /dev/sdXY
-```
-
-### Create root filesystem
-
-💽 This will create the filesystem where the system will be installed on
-
-```bash
-mkfs.ext4 -L ROOT /dev/sdXY
-```
-
-### Create home partition filesystem
-
-🏠 If you created a separate home partition
-
-```bash
-mkfs.ext4 -L HOME /dev/sdXY
-```
-
-### Create Swap
-
-```bash
-mkswap -L SWAP /dev/sdXY
-swapon /dev/sdXY
+mkswap -L SWAP /dev/nvme0n1p3
+swapon /dev/nvme0n1p3
 ```

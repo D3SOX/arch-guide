@@ -1,150 +1,48 @@
-# Install Desktop
+# Install a desktop
 
-## Display Server
+Choose one desktop and one display manager. These commands still run inside the chroot; enable services here without `--now`. They start after reboot. If your GPU needs a legacy AUR driver, install the desktop packages but skip enabling its display manager until you have followed the [NVIDIA instructions](/installation/useful-packages#nvidia).
 
-🖥️ Choose between Xorg or Wayland as your display server
+## KDE Plasma
 
-### Xorg
-
-Xorg is a traditional display server
+Plasma is the main desktop used in this guide. [Plasma 6.8](https://kde.org/announcements/plasma/6/6.8.0/) uses Wayland; X11 applications run through Xwayland.
 
 ```bash
-pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xkill xorg-xinput xorg-xwininfo
+pacman -S plasma konsole dolphin kate ark gwenview okular xorg-xwayland
+systemctl enable plasmalogin.service
 ```
 
-### Wayland
+The `plasma` group includes [Plasma Login Manager](https://wiki.archlinux.org/title/Plasma_Login_Manager). Accept the group selection to install it. SDDM is an alternative; if choosing it, install `sddm` and enable `sddm.service` instead. Enable only one login service.
 
-Wayland is a modern display server protocol. Most desktop environments (GNOME, KDE Plasma, etc.) include Wayland support out of the box — you typically do not install `wayland` by itself.
+Optional applications include `kcalc`, `filelight`, `kdegraphics-thumbnailers`, `ffmpegthumbs` and `kdeconnect`. Install `sshfs` if you need KDE Connect's filesystem browsing.
 
-If you choose a desktop environment (e.g., GNOME, KDE Plasma, Xfce, Cinnamon), the display server is handled for you and Wayland support is included where applicable. You don't need to install Wayland separately.
+See [KDE](https://wiki.archlinux.org/title/KDE) for session and hardware troubleshooting.
 
-See also <https://wiki.archlinux.org/title/Wayland>
+## Other desktops
 
-## Desktop Environment
+Install only the row you choose. The display manager column identifies the additional package and service to enable. Consult the linked desktop page for session-specific setup; Wayland support varies between desktops.
 
-🗔 You need to select a desktop environment
+| Desktop | Packages or groups | Display manager |
+| --- | --- | --- |
+| [GNOME](https://wiki.archlinux.org/title/GNOME) | `gnome` (`gnome-extra` optional) | `gdm`; enable `gdm.service` |
+| [Xfce](https://wiki.archlinux.org/title/Xfce) | `xorg-server xfce4 xfce4-goodies` | LightDM, below |
+| [LXDE](https://wiki.archlinux.org/title/LXDE) | `xorg-server lxde lxdm` | Enable `lxdm.service` |
+| [LXQt](https://wiki.archlinux.org/title/LXQt) | `xorg-server lxqt breeze-icons sddm` | Enable `sddm.service`; see the wiki for the separate Wayland setup |
+| [Cinnamon](https://wiki.archlinux.org/title/Cinnamon) | `xorg-server cinnamon xed xreader gnome-terminal` | LightDM, below |
+| [Budgie](https://wiki.archlinux.org/title/Budgie) | `budgie gdm` | Enable `gdm.service`; current Budgie uses Wayland |
+| [MATE](https://wiki.archlinux.org/title/MATE) | `xorg-server mate mate-extra` | LightDM, below |
+| [Deepin](https://wiki.archlinux.org/title/Deepin) | `deepin deepin-extra` | Follow its wiki's LightDM and greeter configuration |
 
-- For beginners coming from Windows I recommend KDE Plasma or Cinnmaon.
-- For a very resource friendy desktop I recommend Xfce or LXQt
-- **The instructions for KDE Plasma are tested by me because I use it. Others should work but you may need some extra packages for productive use (pull requests are welcome)**
-
-### KDE Plasma
-
-```bash
-pacman -S plasma kdialog kcalc icoutils libappimage konsole dolphin kdegraphics-thumbnailers svgpart ffmpegthumbs kdenetwork-filesharing gwenview kimageformats ark kate okular kcron kdf filelight print-manager
-```
-
-If you want to use KDE Connect (Pairing with Android phone)
-
-```bash
-pacman -S kdeconnect sshfs
-```
-
-See also <https://wiki.archlinux.org/title/KDE>
-
-### Xfce
-
-```bash
-pacman -S xfce4 xfce4-goodies
-```
-
-See also <https://wiki.archlinux.org/title/Xfce>
-
-### GNOME
-
-```bash
-pacman -S gnome gnome-extra
-```
-
-See also <https://wiki.archlinux.org/title/GNOME>
-
-### LXDE
-
-```bash
-pacman -S lxde lxdm-gtk3
-```
-
-See also <https://wiki.archlinux.org/title/LXDE>
-
-### LXQt
-
-```bash
-pacman -S lxqt breeze-icons pcmanfm-qt qterminal lxqt-sudo polkit-qt5
-```
-
-See also <https://wiki.archlinux.org/title/LXQt>
-
-### Cinnamon
-
-```bash
-pacman -S cinnamon cinnamon-translations nemo-fileroller nemo-image-converter nemo-preview xed xreader gnome-terminal
-```
-
-See also <https://wiki.archlinux.org/title/Cinnamon>
-
-### Budgie
-
-```bash
-pacman -S budgie-desktop network-manager-applet
-```
-
-See also <https://wiki.archlinux.org/title/Budgie>
-
-### Mate
-
-```bash
-pacman -S mate mate-extra
-```
-
-See also <https://wiki.archlinux.org/title/MATE>
-
-### Deepin
-
-```bash
-pacman -S deepin deepin-extra
-nano /etc/lightdm/lightdm.conf
-# append this line to use the deepin specific greeter
-greeter-session=lightdm-deepin-greeter
-```
-
-See also <https://wiki.archlinux.org/title/Deepin>
-
-## Display/Desktop Manager
-
-🖥️ A display manager is basically your login screen where you enter your user details and select your Desktop Environment
-
-### LXDM (Included with LXDE)
-
-```bash
-pacman -S lxdm-gtk3
-systemctl enable lxdm
-```
-
-See also <https://wiki.archlinux.org/title/LXDM>
-
-### SDDM (Included with KDE Plasma)
-
-```bash
-pacman -S sddm
-systemctl enable --now sddm
-```
-
-See also <https://wiki.archlinux.org/title/SDDM>
-
-### GDM (Included with GNOME/Budgie/MATE)
-
-```bash
-pacman -S gdm
-systemctl enable --now gdm
-```
-
-See also <https://wiki.archlinux.org/title/GDM>
-
-### LightDM
+For rows using LightDM:
 
 ```bash
 pacman -S lightdm lightdm-gtk-greeter
-systemctl enable --now lightdm
+nano /etc/lightdm/lightdm.conf
 ```
 
-See also <https://wiki.archlinux.org/title/LightDM>
+Set `greeter-session=lightdm-gtk-greeter` in the `[Seat:*]` section, then enable the service:
+
+```bash
+systemctl enable lightdm.service
+```
+
+Xorg normally uses the modesetting driver and libinput. Do not install every graphics driver or legacy input driver. Wayland desktops provide their own compositor; installing the `wayland` package alone does not create a desktop session.

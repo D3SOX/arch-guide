@@ -1,190 +1,88 @@
 # Gaming
 
-## Video driver
+Run these commands as your regular user after installation. Start with the [graphics driver packages](/installation/useful-packages#graphics-drivers), including the matching 32-bit driver packages for Steam. Enable multilib in `/etc/pacman.conf` and run `sudo pacman -Syu` before installing 32-bit packages.
 
-If you followed [Installation/Useful packages/Graphics Driver](../installation/useful-packages.md#graphics-driver)
-your graphics driver & Vulkan should be already set-up correctly
-
-## Graphics card configuration tool
-
-### AMD
-
-:::: code-group
-
-```bash [paru]
-paru -S radeon-profile-git radeon-profile-daemon-git
-```
-
-```bash [yay]
-yay -S radeon-profile-git radeon-profile-daemon-git
-```
-
-::::
+## Steam and Lutris
 
 ```bash
-systemctl enable --now radeon-profile-daemon
+sudo pacman -S steam lutris
 ```
 
-### NVIDIA
+When pacman asks for a Vulkan driver provider, select the one matching your GPU. On hybrid systems, install the drivers needed by both GPUs.
 
-:::: code-group
+Use Steam's supplied Proton first. Select a compatibility tool in a game's properties when needed. Lutris manages runners for games outside Steam; use its current runner integration rather than a separately downloaded nightly Wine package. See [Steam](https://wiki.archlinux.org/title/Steam) and [Lutris](https://wiki.archlinux.org/title/Lutris).
 
-```bash [paru]
-paru -S nvidia-settings
-```
+If a game specifically needs GE-Proton, [ProtonUp-Qt](https://github.com/DavidoTek/ProtonUp-Qt) can install it for supported launchers. `protonup-qt` is an optional AUR package:
 
-```bash [yay]
-yay -S nvidia-settings
-```
-
-::::
-
-## Wine
-
-### Libraries
-
-Recommended by [Lutris](https://github.com/lutris/docs/blob/master/WineDependencies.md#archendeavourosmanjaroother-arch-derivatives)
-
-:::: code-group
-
-```bash [paru]
-paru -S --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama libgcrypt lib32-libgcrypt libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
-```
-
-```bash [yay]
-yay -S --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama libgcrypt lib32-libgcrypt libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
-```
-
-::::
-
-:::: code-group
-
-```bash [paru]
-paru -S vkd3d lib32-vkd3d faudio lib32-faudio
-```
-
-```bash [yay]
-yay -S vkd3d lib32-vkd3d faudio lib32-faudio
-```
-
-::::
-
-### Custom Wine/Proton
-
-For custom Proton, I recommend GloriousEgroll's builds. For [Steam](https://github.com/GloriousEggroll/proton-ge-custom/) and [Lutris](https://github.com/GloriousEggroll/wine-ge-custom/).
-These can be installed using [ProtonUp-Qt](https://github.com/DavidoTek/ProtonUp-Qt)
-:::: code-group
-
-```bash [paru]
+```bash
 paru -S protonup-qt
 ```
 
-```bash [yay]
-yay -S protonup-qt
+Use `yay` instead if that is your installed helper. The old Wine-GE project is archived; its [upstream README](https://github.com/GloriousEggroll/wine-ge-custom) points to the umu-based approach for running GE-Proton outside Steam. Follow your launcher's current integration.
+
+## Standalone Wine
+
+For Windows applications outside a managed launcher:
+
+```bash
+sudo pacman -S wine
 ```
 
-::::
+`wine-staging` is an alternative when an application needs staging patches. Current Arch Wine packages use the new WoW64 mode, so do not copy old lists of dozens of `lib32-*` Wine dependencies. Steam's 32-bit graphics requirements still apply separately.
 
-For custom Wine, I recommend [Tk-Glitch](https://github.com/Frogging-Family/wine-tkg-git/) which can be downloaded from [here](https://nightly.link/Frogging-Family/wine-tkg-git/workflows/wine-arch/master/wine-tkg-build.zip) and installed with:
+Existing 32-bit-only Wine prefixes may need recreation for the [WoW64 transition](https://archlinux.org/news/transition-to-the-new-wow64-wine-and-wine-staging/). Back up saves and application data before replacing a prefix; do not delete it blindly.
 
-:::: code-group
+Modern Wine supports NTSync, and Arch packages supply its module-loading integration. Different Proton or Wine runners can use different synchronization implementations. Keep system-wide file-descriptor limits at their defaults unless a specific runner documents a need to change them. See [Wine synchronization primitives](https://wiki.archlinux.org/title/Wine#Synchronization_primitives).
 
-```bash [paru]
-unzip wine-tkg-build.zip && paru -U wine-tkg-*.pkg.tar.zst
+## Optional performance tools
+
+GameMode can temporarily change selected system settings while a game runs:
+
+```bash
+sudo pacman -S gamemode lib32-gamemode
 ```
 
-```bash [yay]
-unzip wine-tkg-build.zip && yay -U wine-tkg-*.pkg.tar.zst
+For Steam games, set the launch option to `gamemoderun %command%` if you want to use it. See [GameMode](https://wiki.archlinux.org/title/GameMode) for configuration and testing.
+
+For supported GPU monitoring and controls, [LACT](https://github.com/ilya-zlobintsev/LACT) is available in the official repositories:
+
+```bash
+sudo pacman -S lact
+sudo systemctl enable --now lactd.service
 ```
 
-::::
+Check hardware support before changing power, voltage or clock settings. NVIDIA users can also install `nvidia-settings`, although some controls are unavailable in Wayland sessions.
 
-## Programs
+## Optional kernels
 
-Install basic gaming tools
+The standard Arch kernel is a suitable starting point. If you want to compare `linux-zen`, keep `linux` installed as a recovery option:
 
-:::: code-group
-
-```bash [paru]
-paru -S lutris steam gamemode lib32-gamemode
+```bash
+sudo pacman -S linux-zen
 ```
 
-```bash [yay]
-yay -S lutris steam gamemode lib32-gamemode
+External modules need matching headers, such as `linux-zen-headers`. For Turing-or-newer NVIDIA hardware using the current driver, switch to `nvidia-open-dkms` and install headers for **every** installed kernel. Let pacman handle the conflicting prebuilt module package in the normal transaction. Legacy GPUs require their matching legacy DKMS branch; do not force-remove dependencies.
+
+Regenerate initramfs images and check for module build errors:
+
+```bash
+sudo mkinitcpio -P
 ```
 
-::::
-
-## Custom kernel
-
-:::: warning
-If you are using NVIDIA and want to use a custom kernel you need to use `nvidia-dkms` since `nvidia` is just for the mainline `linux` kernel and `nvidia-lts` for `linux-lts`
-
-:::: code-group
-
-```bash [paru]
-paru -Rdd nvidia
-paru -S nvidia-dkms
-```
-
-```bash [yay]
-yay -Rdd nvidia
-yay -S nvidia-dkms
-```
-
-::::
-
-Alternatively you can use [nvidia-all](https://github.com/Frogging-Family/nvidia-all) to get the latest NVIDIA driver for all kernels
-
-### Zen
-
-:::: code-group
-
-```bash [paru]
-paru -S linux-zen linux-zen-headers
-```
-
-```bash [yay]
-yay -S linux-zen linux-zen-headers
-```
-
-::::
-
-### Tk-Glitch
-
-See [linux-tkg](https://github.com/Frogging-Family/linux-tkg)
-
-### After installing
-
-You need to re-generate your grub config
+With GRUB:
 
 ```bash
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-## Tweak Esync
+With systemd-boot, copy your working `/boot/loader/entries/arch.conf` to `arch-zen.conf`, retain its root/encryption options, and change the title, `linux` and `initrd` lines to:
 
-If this command prints out a value which is equal or greater to `524288` you're all set
-
-```bash
-ulimit -Hn
+```text
+title Arch Linux Zen
+linux /vmlinuz-linux-zen
+initrd /initramfs-linux-zen.img
 ```
 
-However, if it doesn't, or you want to further improve it:
+Check `bootctl list` and the files in `/boot` before rebooting. Keep the original entry available.
 
-```bash
-sudo nano /etc/systemd/system.conf
-sudo nano /etc/systemd/user.conf
-```
-
-append this in both files
-
-```ini
-DefaultLimitNOFILE=1024:1048576
-```
-
-Source: <https://github.com/zfigura/wine/blob/master/README.esync>
-
-## Other tweaks
-
-The Arch wiki has a page dedicated to [Gaming](https://wiki.archlinux.org/index.php/gaming) with a few other tweaks you might want to look into.
+More hardware-specific guidance is in [Gaming](https://wiki.archlinux.org/title/Gaming).

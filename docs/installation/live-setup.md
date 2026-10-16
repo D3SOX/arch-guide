@@ -1,55 +1,41 @@
-# Live Setup
+# Live setup
 
-At this point, I assume you're already in the archiso. Make sure you are using the latest version which can be found on the [official download site](https://www.archlinux.org/download/)
+Download a current ISO from the [official download page](https://archlinux.org/download/) and follow its signature verification instructions before booting it.
 
-## Set keyboard layout
+## Set the keyboard layout
 
-⌨️ The default keymap is US. Available layouts can be listed with:
+The console defaults to US. List layouts, then load yours; this example uses German:
 
 ```bash
-ls /usr/share/kbd/keymaps/**/*.map.gz
+localectl list-keymaps
+loadkeys de-latin1
 ```
 
-Set your keymap (replace `yourkeymap` with your keymap e.g. `de-latin1`)
+Use the same layout when entering encryption passwords and configuring the installed system.
 
-```bash
-loadkeys yourkeymap
-```
+## Connect to the internet
 
-## If you use Wi-Fi to connect to your router
+Wired networking normally connects automatically. For Wi-Fi, enter `iwctl`, then run the following commands inside its prompt, replacing `wlan0` and the network name:
 
-📶 Use this tool to connect to your network
-
-```bash
-iwctl
+```text
 device list
-# your device name might be different (replace wlan0)
 station wlan0 scan
 station wlan0 get-networks
-# replace <SSID> with your network name from the previous command
-station wlan0 connect <SSID>
+station wlan0 connect "Your network name"
 exit
 ```
 
-## Check internet connection
+Check connectivity and synchronize the clock:
 
 ```bash
 ping -c 3 archlinux.org
-```
-
-## Sync time
-
-🕒 Ensure the system clock is accurate
-
-```bash
 timedatectl set-ntp true
 ```
 
-## Check if booted in BIOS or UEFI
+## Check the firmware mode
 
 ```bash
 ls /sys/firmware/efi/efivars
 ```
 
-If the directory does not exist, the system may be booted in Legacy BIOS Mode.
-Most likely you want to do a UEFI install so please double-check if your system supports UEFI and you selected the correct entry in the boot menu (In most cases prefixed with UEFI)
+If this directory exists, the ISO booted in UEFI mode. Otherwise it booted in BIOS mode. For a UEFI installation, reboot and select the UEFI entry for your USB drive if necessary.

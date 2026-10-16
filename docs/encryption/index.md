@@ -1,190 +1,109 @@
 # Encryption
 
-::: warning
-This guide will mostly care for UEFI systems. Steps shouldn't be much different for non-UEFI systems. Have a look at the
-Arch wiki regarding [system encryption](https://wiki.archlinux.org/index.php/Dm-crypt) for more information.
-:::
+This alternative installs ext4 and optional swap inside LVM on LUKS2, with a separate unencrypted ESP at `/boot`. It covers UEFI with either GRUB or systemd-boot. Start here after [live setup](/installation/live-setup).
 
-::: tip
-This guide uses X, Y and Z as placeholders. Adjust them accordingly to your setup. Additionally, "sd" could be different depending
-on the used connection method of your drive.
-:::
+The root filesystem and swap are encrypted; the bootloader, kernel and initramfs on the ESP are not. This does not protect the boot files against tampering. [Secure Boot](https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot) and [unified kernel images](https://wiki.archlinux.org/title/Unified_kernel_image) require additional setup.
 
-In this guide, the encryption configuration we want to achieve is this:
+## Partition the disk
 
-```
-                |----------|----------------------|
-                |   Swap   |   Other partitions   |
-                |          |   e.g. / or /home    |
-|---------------|---------------------------------|
-|   Grub boot   |   Encrypted container (LUKS)    |
-|---------------|---------------------------------|
-```
-
-At first, we have a `/boot` partition that contains the Grub bootloader as well as the necessary files for UEFI.
-Then we have an encrypted container that uses LUKS that contains the swap and other partitions, like the root partition or `/home`.
-All your data as well as the system will be encrypted as a result of that.
-
-This results in you having to type in a password directly after booting, which will unlock the encrypted LUKS container and then boot
-the system normally.
-
-## Partitioning
-
-To get a brief overview of the disks, use the command
+Check the target carefully. The following operations destroy data on the partitions you format. Replace the NVMe examples with your actual devices.
 
 ```bash
-fdisk -l
+lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS,MODEL
+cfdisk /dev/nvme0n1
 ```
 
-After you got the disk to use, run
+Use GPT and create:
+
+| Partition | Size | Type | Purpose |
+| --- | --- | --- | --- |
+| `/dev/nvme0n1p1` | 1 GiB | EFI System (`ef00` in gdisk) | `/boot` |
+| `/dev/nvme0n1p2` | Remaining space | Linux LUKS (`8309` in gdisk) | Encrypted container |
+
+Preserve an existing ESP when dual booting. Do not format it; check that it has room for kernels and initramfs images.
+
+## Create the encrypted container
+
+Use the intended console keyboard layout when entering the passphrase:
 
 ```bash
-gdisk /dev/sdX
-```
-
-to partition the disk accordingly. For more information on how to use gdisk, see the [Arch wiki](https://wiki.archlinux.org/index.php/GPT_fdisk).
-For completeness, the most used commands are:
-| Command | What does this do? |
-| ------- | -------------------- |
-| `o` | New partition table |
-| `n` | Create new partition |
-| `w` | Write table to disk |
-
-After partitioning, you want to have a layout that looks like this:
-| Partition | Usage | Size | Partition code | Partition type |
-| ----------- | -------------- | -------------------------------------------------------------------------------------- | --------------- | ---------------- |
-| `/dev/sdXY` | Grub boot | Depends, [300M are recommended](/installation/partitioning-formatting.html#efi-system) | `ef00` | EFI System |
-| `/dev/sdXZ` | LUKS container | Remaining | `8E00` | Linux Filesystem |
-
-## The crypt container
-
-### Create crypt container
-
-Now we create a crypt container on `sdXZ` using LUKS. For more information, see these two pages on the Arch wiki regarding dm-crypt:
-
-- [Encrypting an entire system: LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
-- [Device encryption: Encryption options for LUKS mode](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Encryption_options_for_LUKS_mode)
-
-Encrypt `dev/sdXZ`. You will be prompted for a password. **Care for different keyboard layouts when typing in the password!**
-
-```bash
-cryptsetup luksFormat -c aes-xts-plain64 -s 512 /dev/sdXZ
-```
-
-Now open the encrypted container and map it to the device `cryptroot`. You will be prompted for the encryption password.
-
-```bash
-cryptsetup open /dev/sdXZ cryptroot
-```
-
-### Creating LVM within the LUKS container
-
-We currently have an (open and) encrypted container, but no LVM inside. To do this, we first have to create a volume group.
-We will call it `main`:
-
-```bash
+cryptsetup luksFormat --type luks2 /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 cryptroot
+pvcreate /dev/mapper/cryptroot
 vgcreate main /dev/mapper/cryptroot
 ```
 
-Now we create the partitions we need. Since we just want a swap partition and a root partition, we need these two commands. If you want
-additional partitions, e.g. for a separate home partition, adjust the following commands (in the other sections, too) according to your
-needs. For recommendations regarding the swap size, see the [partitioning section of this guide](/installation/partitioning-formatting.html#swap).
+The following optional swap volume is 4 GiB. Change its size for your workload, or skip it if using zram. Hibernation needs sufficiently large disk swap and separate [resume configuration](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation).
 
 ```bash
-lvcreate -L 32G main -n swap
-lvcreate -l 100%FREE main -n root
+lvcreate -L 4G -n swap main
 ```
 
-### Create the filesystems
-
-Now we format the newly created volumes and partitions. The UEFI partition needs to be of type `fat32`. Additionally, this will get you
-a `ext4` root partition. You can adjust this freely if you like.
+Create root using most of the remaining space, leaving room in the volume group for maintenance such as ext4's `e2scrub`:
 
 ```bash
-mkfs.fat -F 32 /dev/sdXY
+lvcreate -l 95%FREE -n root main
+mkfs.ext4 -L ROOT /dev/mapper/main-root
+```
+
+If you created the swap volume:
+
+```bash
 mkswap /dev/mapper/main-swap
-mkfs.ext4 /dev/mapper/main-root
-```
-
-### Mounting the system
-
-Mount the system
-
-```bash
-mount /dev/mapper/main-root /mnt
-mkdir /mnt/boot
-mount /dev/sdXY /mnt/boot
-```
-
-Additionally, enable the swap
-
-```bash
 swapon /dev/mapper/main-swap
 ```
 
-When following the guide for a normal installation, you can go back to the [base installation page](/installation/base-installation.html) now.
-
-## Adjust linux kernel hooks
-
-Edit the file `/etc/mkinitcpio.conf` to contain the following line
-
-```ini
-HOOKS=(base udev autodetect modconf block filesystems keyboard keymap encrypt lvm2 fsck)
-```
-
-After that, run the command to create the initial ramdisk environment
+Format the ESP **only if it is new**:
 
 ```bash
-mkinitcpio -P
+mkfs.fat -F32 -n EFI /dev/nvme0n1p1
 ```
 
-## Install grub
-
-Before installing grub, we have to mount the efi variables and install important packages
+Mount root and the ESP:
 
 ```bash
-mount -t efivarfs efivarfs /sys/firmware/efi/efivars
-pacman -S grub efibootmgr dosfstools
+mount /dev/mapper/main-root /mnt
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
+findmnt -R /mnt
 ```
 
-Additionally, install the microcode packages for your cpu, e.g. `intel-ucode` or `amd-ucode`.
+Continue with [base installation](/installation/base-installation), adding `lvm2` to `pacstrap`. Follow the sidebar through system configuration, users, desktop and useful packages. The bootloader page returns to the next section before generating the initramfs.
 
-Now find the UUID of the root partition (in the line starting with `/dev/sdXZ`) and note it down
+## Configure the initramfs
+
+Run this section inside the installed system's chroot, after setting `/etc/vconsole.conf`. Ensure the tools are installed:
 
 ```bash
-blkid | grep "UUID="
+pacman -S --needed lvm2 cryptsetup
+nano /etc/mkinitcpio.conf
 ```
 
-Adjust `/etc/default/grub` because of the encryption. Replace `<UUID>` with the UUID of the device you found earlier.
-
-```ini
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:cryptroot root=/dev/mapper/main-root"
-```
-
-::: tip
-If you want to type the password with the keyboard layout of your home country, you can adjust the line like this with
-the languages of your choice. This example uses the german keyboard layout.
-
-```ini
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:cryptroot root=/dev/mapper/main-root lang=de locale=de_DE.UTF-8"
-```
-
-:::
-
-After that, you can install grub. Use the following commands to do that. **Make sure no errors are reported here.**
+Use this systemd-based hook sequence:
 
 ```bash
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck --debug
-grub-mkconfig -o /boot/grub/grub.cfg
+HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt lvm2 filesystems fsck)
 ```
 
-When following the guide for a normal installation, you can go back to the [configure system page](/installation/configure-system.html) now.
+`sd-vconsole` supplies the console keymap, `sd-encrypt` unlocks LUKS, and `lvm2` activates the root volume. Do not mix this sequence with the BusyBox `encrypt`/`keymap` hooks.
 
-## Additional resources
+Find the UUID of the **outer LUKS partition**, not the filesystem or logical volume:
 
-For more information, you can visit the following pages:
+```bash
+cryptsetup luksUUID /dev/nvme0n1p2
+```
 
-- <https://wiki.archlinux.org/index.php/Dm-crypt>
-- <https://www.timoschindler.de/arch-linux-uefi-boot-mit-grub-und-verschluesseltem-lvm/> (German)
+Return to [bootloader installation](/installation/install-bootloader) and use this UUID in its encrypted-root instructions. That page generates the initramfs for all installed kernels.
 
-This guide tries to sum them all up in one neat page.
+## Header backup and SSD discard
+
+Back up the LUKS header to separate, protected storage. Replace the output path with a mounted external backup location:
+
+```bash
+cryptsetup luksHeaderBackup /dev/nvme0n1p2 --header-backup-file /path/on/external/storage/arch-luks-header.img
+```
+
+Keep this backup private: an old header and its old passphrase can still decrypt the data even after you change the current passphrase. See [LUKS header backup](https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#Backup_and_restore).
+
+Enabling `fstrim.timer` alone does not pass discard through LUKS. Allowing discard is optional and reveals allocation patterns; review [dm-crypt SSD support](https://wiki.archlinux.org/title/Dm-crypt/Specialties#Discard/TRIM_support_for_solid_state_drives_(SSD)) before changing it.
+
+Reference: [LVM on LUKS](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS).

@@ -24,11 +24,11 @@ export default defineConfig({
                 link: '/encryption/',
             },
             {
-                text: 'Post-Installation',
+                text: 'Post-installation',
                 link: '/post-installation/'
             },
             {
-                text: 'Fixes & Tweaks',
+                text: 'Maintenance and recovery',
                 link: '/tweaks/'
             },
             {
@@ -42,15 +42,15 @@ export default defineConfig({
                     text: 'Installation',
                     items: [
                         { text: 'Introduction', link: '/installation/' },
-                        { text: 'Live Setup', link: '/installation/live-setup' },
-                        { text: 'Partitioning & Formatting', link: '/installation/partitioning-formatting' },
+                        { text: 'Live setup', link: '/installation/live-setup' },
+                        { text: 'Partitioning and formatting', link: '/installation/partitioning-formatting' },
                         { text: 'Mount file systems', link: '/installation/mount-filesystems' },
                         { text: 'Base installation', link: '/installation/base-installation' },
-                        { text: 'Install Bootloader', link: '/installation/install-bootloader' },
                         { text: 'Configure system', link: '/installation/configure-system' },
-                        { text: 'Setup users', link: '/installation/setup-users' },
-                        { text: 'Install Desktop', link: '/installation/install-desktop' },
-                        { text: 'Useful packages', link: '/installation/useful-packages' },
+                        { text: 'Set up users', link: '/installation/setup-users' },
+                        { text: 'Install a desktop', link: '/installation/install-desktop' },
+                        { text: 'Drivers and useful packages', link: '/installation/useful-packages' },
+                        { text: 'Install a bootloader', link: '/installation/install-bootloader' },
                         { text: 'Reboot', link: '/installation/reboot' },
                     ]
                 }
@@ -70,12 +70,7 @@ export default defineConfig({
         },
 
         search: {
-            provider: 'algolia',
-            options: {
-                appId: '0E44DZDX9K',
-                apiKey: '05f13b57950ef1918e20d7bb444ba444',
-                indexName: 'arch-d3sox'
-            }
+            provider: 'local'
         },
     },
 });

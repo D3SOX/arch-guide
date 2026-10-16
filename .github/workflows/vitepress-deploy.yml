@@ -1,51 +1,76 @@
-name: Build and Deploy
+name: Check, build and deploy
 
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
-  group: deploy-${{ github.ref }}
+  group: site-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  cd:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [24]
-
+  check-and-build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@v7
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
-      - name: Setup bun
-        uses: oven-sh/setup-bun@v2
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version: latest
 
-      - name: Cache bun dependencies
-        uses: actions/cache@v6
+      - name: Cache Bun dependencies
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          path: |
-            ~/.bun/install/cache
-            ~/.cache/bun
+          path: ~/.bun/install/cache
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-
 
-      - name: Install dependencies 👨🏻‍💻
+      - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Generate 👷
+      - name: Check documentation
+        run: bun run check-links
+
+      - name: Build
         run: bun run build
 
-      - name: Deploy 🚀
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload site
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: site
+          path: docs/.vitepress/dist
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    needs: check-and-build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download site
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: site
+          path: site
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          publish_dir: site
           commit_message: ${{ github.event.head_commit.message }}
           cname: arch.d3sox.me

@@ -1,8 +1,6 @@
-# Line Highlighting
+# Follow-up work
 
-- Make use of line highlighting where applicable
-- See https://vitepress.vuejs.org/guide/markdown.html#line-highlighting-in-code-blocks
-
-# Other TODOs
-
-- Add instructions to dual-boot with Windows 10
+- Boot-test fresh UEFI installations with GRUB and systemd-boot, both plain ext4 and LVM on LUKS.
+- Boot-test BIOS GRUB with DOS and GPT partition tables.
+- Test recovery after a kernel update and an ESP restore.
+- Add a worked Windows 11 dual-boot example.

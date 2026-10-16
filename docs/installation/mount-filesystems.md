@@ -1,21 +1,23 @@
-# Mount file systems
+# Mount filesystems
 
-💽 Mount root filesystem:
-
-```bash
-mount /dev/sdXY /mnt
-```
-
-▶️ Only UEFI
+Mount root first, substituting the root partition you created:
 
 ```bash
-mkdir -p /mnt/boot/efi
-mount /dev/sdXY /mnt/boot/efi
+mount /dev/nvme0n1p2 /mnt
 ```
 
-🏠 If you created a separate home partition:
+For UEFI, mount the EFI system partition at `/boot` inside the new system:
 
 ```bash
-mkdir /mnt/home
-mount /dev/sdXY /mnt/home
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ```
+
+For BIOS, skip the ESP mount. If you created a separate home partition, mount it at `/mnt/home` using `mount --mkdir` and its actual device.
+
+Check the result before installing:
+
+```bash
+findmnt -R /mnt
+```
+
+On UEFI, `/mnt/boot` must be mounted before `pacstrap` so the kernel and initramfs are written to the ESP.

@@ -9,11 +9,12 @@
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
         "serve": "vitepress serve docs",
-        "check-links": "find docs -name \\*.md -print0 | xargs -0 -n1 markdown-link-check"
+        "check-links": "bun scripts/check-docs.mjs",
+        "check-external-links": "find docs -name \\*.md -print0 | xargs -0 -n1 markdown-link-check --config .markdown-link-check.json"
     },
     "devDependencies": {
         "markdown-link-check": "^3.15.0",
         "vitepress": "^1.6.4",
-        "vue": "^3.5.43"
+        "vue": "^3.5.44"
     }
 }

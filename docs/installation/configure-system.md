@@ -1,101 +1,58 @@
-# Configure system
+# Configure the system
 
-## The nano text editor
+Use `nano` to edit files: Ctrl+O followed by Enter saves, and Ctrl+X exits.
 
-Nano is the text editor we will use in this tutorial. Basic Usage:
+## Hostname
 
-- Move with arrow keys
-- `CTRL + O` and then `ENTER` to save
-- `CTRL + X` to exit
-
-## Setup hostname
-
-📛 This will be the name of your PC on your network  (Replace `myhostname`)
+Replace `myhostname` with your computer's name:
 
 ```bash
 echo myhostname > /etc/hostname
-nano /etc/hosts
 ```
 
-Add these lines
+## Locale and keyboard
 
-```
-127.0.0.1   localhost
-::1         localhost
-127.0.1.1   myhostname.localdomain  myhostname
-```
-
-## Setup locale
-
-🌐 Uncomment (remove the # in front of) all languages you need
+Edit `/etc/locale.gen` and uncomment the UTF-8 locales you need, including `en_US.UTF-8` if using the example below:
 
 ```bash
 nano /etc/locale.gen
-```
-
-🏁 Generate locales
-
-```bash
 locale-gen
-```
-
-🔘 Set locale
-
-```bash
 echo LANG=en_US.UTF-8 > /etc/locale.conf
-export LANG=en_US.UTF-8
 ```
 
-⌨️ Set tty keymap (replace `yourkeymap` with your keymap e.g. `de-latin1`)
+Set your console keymap before generating the initramfs. This example uses German; choose the layout you used in the live ISO:
 
 ```bash
-echo KEYMAP=yourkeymap > /etc/vconsole.conf
+echo KEYMAP=de-latin1 > /etc/vconsole.conf
 ```
 
-## Setup time & date
+Desktop keyboard layouts are configured separately after login.
 
-📅 You can tab-complete your stuff after zoneinfo
+## Time and networking
+
+Replace `Region/City` with your timezone, for example `Europe/Berlin`:
 
 ```bash
 ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
-hwclock --systohc --utc
+hwclock --systohc
+systemctl enable systemd-timesyncd.service NetworkManager.service
 ```
 
-## Configure pacman
+NetworkManager handles the installed system's network connections. Wi-Fi credentials from the ISO are not copied automatically; connect again after reboot.
 
-Edit pacman configuration file
+## Pacman
 
-```bash
-nano /etc/pacman.conf
-```
-
-### Setup multilib
-
-👾 multilib is a repository which contains 32-bit libraries and is disabled by default (needed for some games & software; highly recommended to enable)
-
-💥 Uncomment (remove the # in front of) the following lines
+Edit `/etc/pacman.conf`. For Steam or other software requiring 32-bit libraries, uncomment both lines of the multilib repository:
 
 ```ini
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
 
-### Enable parallel downloads
-
-🌐 Depending on your internet connection enabling parallel downloads may speed up the package download process
-
-💥 Uncomment (remove the # in front of) this line and set it to your desired value
-
-```ini
-ParallelDownloads = 5
-```
-
-### Extra candy
-
-🍬 If you want some extra candy you can uncomment `Color` and `VerbosePkgLists` and add `ILoveCandy` under `Misc options`.
-
-### After configuring
+Optionally enable `Color` and set `ParallelDownloads = 5` in the options section. After changing repositories, perform a full upgrade:
 
 ```bash
 pacman -Syu
 ```
+
+Avoid partial upgrades such as refreshing databases and installing packages without upgrading the system. See [System maintenance](https://wiki.archlinux.org/title/System_maintenance).

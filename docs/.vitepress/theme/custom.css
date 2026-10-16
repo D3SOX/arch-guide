@@ -82,14 +82,6 @@
 }
 
 /**
- * Component: Algolia
- * -------------------------------------------------------------------------- */
-
-.DocSearch {
-    --docsearch-primary-color: var(--vp-c-brand) !important;
-}
-
-/**
  * VitePress: Custom fix
  * -------------------------------------------------------------------------- */
 
@@ -119,11 +111,3 @@
 .dark .vp-doc .custom-block a {
     transition: color 0.25s;
 }
-
-/**
- * Hide all AUR helper cheat sheets by default, JS will show the correct one
- */
-.aur-cheat-sheet {
-    display: none;
-}
-
